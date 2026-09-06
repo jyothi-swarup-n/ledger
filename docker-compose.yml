@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  kinetic-ledger:
+    build: .
+    container_name: kinetic-ledger
+    restart: unless-stopped
+    ports:
+      - "3050:80"
+    environment:
+      - NODE_ENV=production

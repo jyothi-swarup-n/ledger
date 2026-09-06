@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="100" fill="#0b0e14"/>
+  <rect x="24" y="24" width="464" height="464" rx="80" fill="none" stroke="#2a334a" stroke-width="8"/>
+  <!-- Kinetic Symbol: Neon Lime Geometry -->
+  <g transform="translate(106, 106)">
+    <!-- Top-left diamond / chevron -->
+    <path d="M50 30 L150 130 L100 180 L0 80 Z" fill="#c3f400"/>
+    <!-- Bottom-right bar -->
+    <path d="M150 170 L250 70 L300 120 L200 220 Z" fill="#3872ff"/>
+    <!-- Center connecting bolt -->
+    <path d="M70 200 L170 100 L230 160 L130 260 Z" fill="#c3f400" opacity="0.9"/>
+    <!-- Bottom ledger anchor -->
+    <rect x="40" y="250" width="220" height="28" rx="8" fill="#e1e2eb"/>
+  </g>
+</svg>

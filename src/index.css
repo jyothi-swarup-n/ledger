@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: #0b0e14;
+    color: #e1e2eb;
+    overscroll-behavior: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Custom neo-brutalist hard shadows and utilities */
+.shadow-brutal {
+  box-shadow: 3px 3px 0px #000000;
+}
+
+.shadow-brutal-sm {
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.shadow-brutal-lg {
+  box-shadow: 4px 4px 0px #000000;
+}
+
+.shadow-brutal-lime {
+  box-shadow: 3px 3px 0px #c3f400;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
