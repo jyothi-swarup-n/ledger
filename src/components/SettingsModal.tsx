@@ -52,7 +52,9 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, o
     lastGoogleBackup,
     profileAliases,
     updateProfileAlias,
-    addProfileScope
+    addProfileScope,
+    loadDemoData,
+    resetUserData
   } = useFinance();
 
   const [activeTab, setActiveTab] = useState<'profile' | 'categories' | 'google' | 'users'>('profile');
@@ -866,6 +868,40 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, o
                 <LogOut className="w-4 h-4" />
                 <span>Log Out of Current Session</span>
               </button>
+            </div>
+
+            {/* Ledger Reset & Demo Tools */}
+            <div className="p-4 bg-[#141824] border-2 border-[#2a334a] rounded-xl space-y-2.5 shadow-brutal-sm">
+              <span className="text-xs font-bold text-white uppercase block">
+                Ledger Data Utilities
+              </span>
+              <p className="text-[11px] text-zinc-400 leading-relaxed">
+                Clear all bank accounts, cards, and transactions to start fresh from scratch, or load sample data to explore.
+              </p>
+              <div className="grid grid-cols-2 gap-2 pt-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (confirm('Are you sure you want to reset your ledger to an empty clean slate?')) {
+                      resetUserData();
+                      onClose();
+                    }
+                  }}
+                  className="py-2 px-2.5 rounded-lg bg-[#0b0e14] border border-[#2a334a] hover:border-[#ff4d6d] text-zinc-200 hover:text-[#ff4d6d] text-[11px] font-bold text-center transition-colors"
+                >
+                  Reset to Clean Slate
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    loadDemoData();
+                    onClose();
+                  }}
+                  className="py-2 px-2.5 rounded-lg bg-[#0b0e14] border border-[#2a334a] hover:border-[#c3f400] text-zinc-200 hover:text-[#c3f400] text-[11px] font-bold text-center transition-colors"
+                >
+                  Load Sample Dataset
+                </button>
+              </div>
             </div>
 
             {/* Danger Zone */}

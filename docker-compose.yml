@@ -5,7 +5,27 @@ services:
     build: .
     container_name: kinetic-ledger
     restart: unless-stopped
+    expose:
+      - "80"
     ports:
       - "3050:80"
     environment:
       - NODE_ENV=production
+
+  caddy:
+    image: caddy:alpine
+    container_name: kinetic-caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - kinetic-ledger
+
+volumes:
+  caddy_data:
+  caddy_config:

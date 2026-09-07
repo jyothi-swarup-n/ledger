@@ -420,67 +420,90 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateTab, onS
         </div>
 
         {/* Horizontal Swipe Deck (Only real Bank Accounts & Credit Cards) */}
-        <div className="flex items-stretch gap-2.5 overflow-x-auto no-scrollbar py-1 -mx-4 px-4">
-          {/* Bank Accounts */}
-          {bankLedgers.map((item) => (
-            <div
-              key={item.account.id}
-              onClick={() => onNavigateTab('accounts')}
-              className="min-w-[190px] sm:min-w-[210px] bg-[#141824] border-2 border-[#2a334a] p-3 rounded-xl shadow-brutal flex flex-col justify-between space-y-2 cursor-pointer hover:border-[#c3f400] transition-all"
-            >
-              <div className="flex items-center justify-between">
-                <div className="w-7 h-7 rounded-lg bg-[#1f2638] flex items-center justify-center text-[#3872ff]">
-                  <Building2 className="w-4 h-4" />
-                </div>
-                <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[#0b0e14] text-zinc-300 border border-[#2a334a]">
-                  BANK
-                </span>
+        {bankLedgers.length === 0 && cardLedgers.length === 0 ? (
+          <div
+            onClick={() => onNavigateTab('accounts')}
+            className="w-full bg-[#141824] border-2 border-dashed border-[#2a334a] hover:border-[#c3f400] p-4 rounded-xl cursor-pointer flex items-center justify-between transition-all"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-[#0b0e14] border border-[#2a334a] flex items-center justify-center text-[#c3f400]">
+                <PlusCircle className="w-5 h-5" />
               </div>
               <div>
-                <span className="text-xs text-zinc-400 block truncate">
-                  {item.account.name} ({item.account.accountNumberMask || '••••'})
+                <span className="text-xs font-bold text-white block">No Accounts Added Yet</span>
+                <span className="text-[11px] text-zinc-400">
+                  Tap to add your first Bank Account or Credit Card to track balances
                 </span>
-                <span className="text-base font-bold text-white block mt-0.5 font-mono">
-                  {formatINR(item.balance)}
-                </span>
-              </div>
-              <div className="flex items-center justify-between pt-1 border-t border-[#2a334a] text-[10px]">
-                <span className="text-[#c3f400] font-bold">Active Float</span>
-                <ArrowRight className="w-3.5 h-3.5 text-zinc-400" />
               </div>
             </div>
-          ))}
+            <div className="flex items-center gap-1 text-xs font-bold text-[#c3f400] shrink-0">
+              <span>Add</span>
+              <ChevronRight className="w-4 h-4" />
+            </div>
+          </div>
+        ) : (
+          <div className="flex items-stretch gap-2.5 overflow-x-auto no-scrollbar py-1 -mx-4 px-4">
+            {/* Bank Accounts */}
+            {bankLedgers.map((item) => (
+              <div
+                key={item.account.id}
+                onClick={() => onNavigateTab('accounts')}
+                className="min-w-[190px] sm:min-w-[210px] bg-[#141824] border-2 border-[#2a334a] p-3 rounded-xl shadow-brutal flex flex-col justify-between space-y-2 cursor-pointer hover:border-[#c3f400] transition-all"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="w-7 h-7 rounded-lg bg-[#1f2638] flex items-center justify-center text-[#3872ff]">
+                    <Building2 className="w-4 h-4" />
+                  </div>
+                  <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[#0b0e14] text-zinc-300 border border-[#2a334a]">
+                    BANK
+                  </span>
+                </div>
+                <div>
+                  <span className="text-xs text-zinc-400 block truncate">
+                    {item.account.name} ({item.account.accountNumberMask || '••••'})
+                  </span>
+                  <span className="text-base font-bold text-white block mt-0.5 font-mono">
+                    {formatINR(item.balance)}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between pt-1 border-t border-[#2a334a] text-[10px]">
+                  <span className="text-[#c3f400] font-bold">Active Float</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-zinc-400" />
+                </div>
+              </div>
+            ))}
 
-          {/* Credit Cards */}
-          {cardLedgers.map((item) => (
-            <div
-              key={item.card.id}
-              onClick={() => onNavigateTab('accounts')}
-              className="min-w-[200px] sm:min-w-[220px] bg-[#1a1215] border-2 border-[#ff4d6d]/40 p-3 rounded-xl shadow-brutal flex flex-col justify-between space-y-2 cursor-pointer hover:border-[#ff4d6d] transition-all"
-            >
-              <div className="flex items-center justify-between">
-                <div className="w-7 h-7 rounded-lg bg-[#33141c] flex items-center justify-center text-[#ff4d6d]">
-                  <CreditCardIcon className="w-4 h-4" />
+            {/* Credit Cards */}
+            {cardLedgers.map((item) => (
+              <div
+                key={item.card.id}
+                onClick={() => onNavigateTab('accounts')}
+                className="min-w-[200px] sm:min-w-[220px] bg-[#1a1215] border-2 border-[#ff4d6d]/40 p-3 rounded-xl shadow-brutal flex flex-col justify-between space-y-2 cursor-pointer hover:border-[#ff4d6d] transition-all"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="w-7 h-7 rounded-lg bg-[#33141c] flex items-center justify-center text-[#ff4d6d]">
+                    <CreditCardIcon className="w-4 h-4" />
+                  </div>
+                  <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[#0b0e14] text-[#ff4d6d] border border-[#ff4d6d]/30">
+                    CARD
+                  </span>
                 </div>
-                <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[#0b0e14] text-[#ff4d6d] border border-[#ff4d6d]/30">
-                  CARD
-                </span>
+                <div>
+                  <span className="text-xs text-zinc-400 block truncate">
+                    {item.card.name} ({item.card.cardNumberMask || '••••'})
+                  </span>
+                  <span className="text-base font-bold text-[#ff4d6d] block mt-0.5 font-mono">
+                    {formatINR(item.outstandingBalance)}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between pt-1 border-t border-[#2a334a] text-[10px]">
+                  <span className="text-zinc-400">Avail: <strong className="text-white font-mono">{formatINR(item.availableCredit, { hideDecimals: true })}</strong></span>
+                  <ArrowRight className="w-3.5 h-3.5 text-zinc-400" />
+                </div>
               </div>
-              <div>
-                <span className="text-xs text-zinc-400 block truncate">
-                  {item.card.name} ({item.card.cardNumberMask || '••••'})
-                </span>
-                <span className="text-base font-bold text-[#ff4d6d] block mt-0.5 font-mono">
-                  {formatINR(item.outstandingBalance)}
-                </span>
-              </div>
-              <div className="flex items-center justify-between pt-1 border-t border-[#2a334a] text-[10px]">
-                <span className="text-zinc-400">Avail: <strong className="text-white font-mono">{formatINR(item.availableCredit, { hideDecimals: true })}</strong></span>
-                <ArrowRight className="w-3.5 h-3.5 text-zinc-400" />
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* 4. Burn Rate Engine vs Envelope Ceiling */}
@@ -544,10 +567,26 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateTab, onS
         {/* Transaction Items */}
         <div className="space-y-2">
           {filteredTransactions.length === 0 ? (
-            <div className="p-6 text-center bg-[#0b0e14] border border-[#2a334a] rounded-lg">
-              <span className="text-xs text-zinc-500 font-mono">
-                No transactions recorded for this filter in {selectedMonth}
-              </span>
+            <div className="p-6 text-center bg-[#0b0e14] border border-[#2a334a] rounded-xl space-y-3">
+              <div className="w-10 h-10 rounded-full bg-[#141824] border border-[#2a334a] flex items-center justify-center text-zinc-400 mx-auto">
+                <Receipt className="w-5 h-5 text-zinc-400" />
+              </div>
+              <div className="space-y-1">
+                <span className="text-xs font-bold text-white block">
+                  No Transactions Recorded Yet
+                </span>
+                <span className="text-[11px] text-zinc-400 block max-w-xs mx-auto">
+                  Your ledger is clean and ready. Add your first income, business expense, or personal spend.
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => onNavigateTab('log')}
+                className="px-4 py-2 rounded-lg bg-[#c3f400] text-[#0b0e14] text-xs font-bold uppercase tracking-wider shadow-brutal-sm hover:brightness-105 transition-all inline-flex items-center gap-1.5"
+              >
+                <PlusCircle className="w-3.5 h-3.5" />
+                <span>Log First Transaction</span>
+              </button>
             </div>
           ) : (
             filteredTransactions.slice(0, 10).map((tx) => {

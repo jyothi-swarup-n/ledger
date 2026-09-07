@@ -225,6 +225,116 @@ export const INITIAL_CATEGORIES: Category[] = [
   }
 ];
 
+export const STARTER_CATEGORIES: Category[] = [
+  {
+    id: 'cat_income',
+    name: 'Income',
+    type: 'Both',
+    icon: 'payments',
+    subcategories: [
+      { id: 'sub_salary', name: 'Primary Salary / Revenue', categoryId: 'cat_income', individualBudget: 0 },
+      { id: 'sub_freelance', name: 'Consulting / Freelance', categoryId: 'cat_income', individualBudget: 0 },
+      { id: 'sub_investments', name: 'Investments & Interest', categoryId: 'cat_income', individualBudget: 0 }
+    ]
+  },
+  {
+    id: 'cat_housing',
+    name: 'Housing & Utilities',
+    type: 'Both',
+    icon: 'home',
+    subcategories: [
+      { id: 'sub_rent', name: 'Rent / Mortgage', categoryId: 'cat_housing', individualBudget: 0 },
+      { id: 'sub_electricity', name: 'Electricity & Water', categoryId: 'cat_housing', individualBudget: 0 },
+      { id: 'sub_internet', name: 'WiFi & Mobile Postpaid', categoryId: 'cat_housing', individualBudget: 0 }
+    ]
+  },
+  {
+    id: 'cat_groceries',
+    name: 'Groceries & Essentials',
+    type: 'Personal',
+    icon: 'shopping_cart',
+    subcategories: [
+      { id: 'sub_supermarket', name: 'Supermarket & Produce', categoryId: 'cat_groceries', individualBudget: 0 },
+      { id: 'sub_dairy', name: 'Dairy & Daily Needs', categoryId: 'cat_groceries', individualBudget: 0 }
+    ]
+  },
+  {
+    id: 'cat_dining',
+    name: 'Dining & Cafes',
+    type: 'Personal',
+    icon: 'restaurant',
+    subcategories: [
+      { id: 'sub_restaurants', name: 'Restaurants & Socials', categoryId: 'cat_dining', individualBudget: 0 },
+      { id: 'sub_delivery', name: 'Food Delivery', categoryId: 'cat_dining', individualBudget: 0 }
+    ]
+  },
+  {
+    id: 'cat_transport',
+    name: 'Travel & Commute',
+    type: 'Both',
+    icon: 'flight',
+    subcategories: [
+      { id: 'sub_fuel_cabs', name: 'Fuel, Cabs & Transit', categoryId: 'cat_transport', individualBudget: 0 },
+      { id: 'sub_flights', name: 'Flights & Rail', categoryId: 'cat_transport', individualBudget: 0 }
+    ]
+  },
+  {
+    id: 'cat_software',
+    name: 'Software & Cloud Tools',
+    type: 'Work',
+    icon: 'code',
+    subcategories: [
+      { id: 'sub_cloud', name: 'Hosting & Cloud Servers', categoryId: 'cat_software', individualBudget: 0 },
+      { id: 'sub_saas', name: 'SaaS Subscriptions', categoryId: 'cat_software', individualBudget: 0 }
+    ]
+  },
+  {
+    id: 'cat_business_ops',
+    name: 'Salaries & Operations',
+    type: 'Work',
+    icon: 'briefcase',
+    subcategories: [
+      { id: 'sub_contractors', name: 'Contractors & Freelancers', categoryId: 'cat_business_ops', individualBudget: 0 },
+      { id: 'sub_equipment', name: 'Office & Hardware', categoryId: 'cat_business_ops', individualBudget: 0 }
+    ]
+  },
+  {
+    id: 'cat_savings',
+    name: 'Savings & Investments',
+    type: 'Both',
+    icon: 'account_balance',
+    subcategories: [
+      { id: 'sub_mutual_funds', name: 'Mutual Funds & Stocks', categoryId: 'cat_savings', individualBudget: 0 },
+      { id: 'sub_emergency', name: 'Emergency Vault', categoryId: 'cat_savings', individualBudget: 0 }
+    ]
+  },
+  {
+    id: 'cat_shopping',
+    name: 'Shopping & Apparel',
+    type: 'Personal',
+    icon: 'shopping_bag',
+    subcategories: [
+      { id: 'sub_lifestyle', name: 'Lifestyle & Electronics', categoryId: 'cat_shopping', individualBudget: 0 }
+    ]
+  },
+  {
+    id: 'cat_entertainment',
+    name: 'Entertainment & Media',
+    type: 'Personal',
+    icon: 'movie',
+    subcategories: [
+      { id: 'sub_streaming', name: 'Streaming & Subscriptions', categoryId: 'cat_entertainment', individualBudget: 0 }
+    ]
+  },
+  {
+    id: 'cat_cc_payment',
+    name: 'Credit Card Payment',
+    type: 'Both',
+    icon: 'credit_card',
+    isTransfer: true
+  }
+];
+
 export const INITIAL_TRANSACTIONS: Transaction[] = [
   // August 2026 Transactions (Demonstrates historical carryover)
   {

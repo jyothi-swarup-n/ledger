@@ -18,7 +18,8 @@ import {
   INITIAL_BANK_ACCOUNTS,
   INITIAL_CREDIT_CARDS,
   INITIAL_CATEGORIES,
-  INITIAL_TRANSACTIONS
+  INITIAL_TRANSACTIONS,
+  STARTER_CATEGORIES
 } from '../data/seedData';
 
 interface FinanceContextType {
@@ -76,9 +77,12 @@ interface FinanceContextType {
   usersList: User[];
   loginUser: (email: string, passwordHash?: string) => boolean;
   signupUser: (name: string, email: string, passwordHash: string) => boolean;
+  loginWithGoogle: (email: string, name?: string) => boolean;
   logoutUser: () => void;
   updateUserProfile: (name: string, passwordHash?: string) => void;
   deleteUserAccount: () => void;
+  loadDemoData: () => void;
+  resetUserData: () => void;
   
   // Google Account & Cloud Backup
   googleAccount: GoogleAccountInfo | null;
@@ -124,30 +128,32 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
     } catch (e) {
       console.error(e);
     }
-    return [INITIAL_USER];
+    return [];
   });
 
   const [currentUser, setCurrentUser] = useState<User | null>(() => {
     try {
       const activeId = localStorage.getItem(STORAGE_CURRENT_USER_ID);
       if (activeId) {
-        const found = usersList.find((u) => u.id === activeId);
+        const saved = localStorage.getItem(STORAGE_USERS_KEY);
+        const list: User[] = saved ? JSON.parse(saved) : [];
+        const found = list.find((u) => u.id === activeId);
         if (found) return found;
       }
     } catch (e) {
       console.error(e);
     }
-    return INITIAL_USER;
+    return null;
   });
 
   // 2. Month period state (defaulting to September 2026)
   const [selectedMonth, setSelectedMonth] = useState<string>('2026-09');
 
-  // 3. User-scoped entities
-  const [bankAccounts, setBankAccounts] = useState<BankAccount[]>(INITIAL_BANK_ACCOUNTS);
-  const [creditCards, setCreditCards] = useState<CreditCard[]>(INITIAL_CREDIT_CARDS);
-  const [categories, setCategories] = useState<Category[]>(INITIAL_CATEGORIES);
-  const [transactions, setTransactions] = useState<Transaction[]>(INITIAL_TRANSACTIONS);
+  // 3. User-scoped entities (Starts 100% empty for new installations)
+  const [bankAccounts, setBankAccounts] = useState<BankAccount[]>([]);
+  const [creditCards, setCreditCards] = useState<CreditCard[]>([]);
+  const [categories, setCategories] = useState<Category[]>(STARTER_CATEGORIES);
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [budgetTargets, setBudgetTargets] = useState<MonthBudgetTarget[]>([]);
 
   // 4. Google Account Cloud Backup state & Profile Aliases
@@ -256,28 +262,29 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   // Load user data on user change
   useEffect(() => {
-    if (!currentUser) return;
+    if (!currentUser) {
+      setBankAccounts([]);
+      setCreditCards([]);
+      setCategories(STARTER_CATEGORIES);
+      setTransactions([]);
+      setBudgetTargets([]);
+      return;
+    }
     const userKey = `${STORAGE_DATA_PREFIX}${currentUser.id}`;
     try {
       const savedData = localStorage.getItem(userKey);
       if (savedData) {
         const parsed = JSON.parse(savedData);
-        if (parsed.bankAccounts) setBankAccounts(parsed.bankAccounts);
-        if (parsed.creditCards) setCreditCards(parsed.creditCards);
-        if (parsed.categories) setCategories(parsed.categories);
-        if (parsed.transactions) setTransactions(parsed.transactions);
-        if (parsed.budgetTargets) setBudgetTargets(parsed.budgetTargets);
-      } else if (currentUser.id === INITIAL_USER.id) {
-        setBankAccounts(INITIAL_BANK_ACCOUNTS);
-        setCreditCards(INITIAL_CREDIT_CARDS);
-        setCategories(INITIAL_CATEGORIES);
-        setTransactions(INITIAL_TRANSACTIONS);
-        setBudgetTargets([]);
+        setBankAccounts(parsed.bankAccounts || []);
+        setCreditCards(parsed.creditCards || []);
+        setCategories(parsed.categories || STARTER_CATEGORIES);
+        setTransactions(parsed.transactions || []);
+        setBudgetTargets(parsed.budgetTargets || []);
       } else {
-        // Fresh new user defaults
-        setBankAccounts(INITIAL_BANK_ACCOUNTS);
-        setCreditCards(INITIAL_CREDIT_CARDS);
-        setCategories(INITIAL_CATEGORIES);
+        // Fresh new user defaults: 100% clean slate starting from scratch
+        setBankAccounts([]);
+        setCreditCards([]);
+        setCategories(STARTER_CATEGORIES);
         setTransactions([]);
         setBudgetTargets([]);
       }
@@ -836,9 +843,98 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
       lastLogin: new Date().toISOString()
     };
 
+    // Clean slate for new signups
+    const userKey = `${STORAGE_DATA_PREFIX}${newUser.id}`;
+    localStorage.setItem(
+      userKey,
+      JSON.stringify({
+        bankAccounts: [],
+        creditCards: [],
+        categories: STARTER_CATEGORIES,
+        transactions: [],
+        budgetTargets: []
+      })
+    );
+
     setUsersList((prev) => [...prev, newUser]);
     setCurrentUser(newUser);
+    setBankAccounts([]);
+    setCreditCards([]);
+    setCategories(STARTER_CATEGORIES);
+    setTransactions([]);
+    setBudgetTargets([]);
     return true;
+  };
+
+  const loginWithGoogle = (email: string, name?: string): boolean => {
+    const normalized = email.trim().toLowerCase();
+    let user = usersList.find((u) => u.email.toLowerCase() === normalized);
+    if (!user) {
+      user = {
+        id: `user_g_${Date.now()}`,
+        name: name?.trim() || email.split('@')[0],
+        email: normalized,
+        createdAt: new Date().toISOString(),
+        lastLogin: new Date().toISOString(),
+        googleAccount: {
+          email: normalized,
+          name: name?.trim() || email.split('@')[0],
+          connectedAt: new Date().toISOString(),
+          lastBackupAt: new Date().toISOString()
+        }
+      };
+      // Clean slate for new Google user
+      const userKey = `${STORAGE_DATA_PREFIX}${user.id}`;
+      localStorage.setItem(
+        userKey,
+        JSON.stringify({
+          bankAccounts: [],
+          creditCards: [],
+          categories: STARTER_CATEGORIES,
+          transactions: [],
+          budgetTargets: []
+        })
+      );
+      setUsersList((prev) => [...prev, user!]);
+      setBankAccounts([]);
+      setCreditCards([]);
+      setCategories(STARTER_CATEGORIES);
+      setTransactions([]);
+      setBudgetTargets([]);
+    } else {
+      const updated: User = {
+        ...user,
+        lastLogin: new Date().toISOString(),
+        googleAccount: user.googleAccount || {
+          email: normalized,
+          name: name?.trim() || email.split('@')[0],
+          connectedAt: new Date().toISOString(),
+          lastBackupAt: new Date().toISOString()
+        }
+      };
+      setUsersList((prev) => prev.map((u) => (u.id === user!.id ? updated : u)));
+      user = updated;
+    }
+    setCurrentUser(user);
+    return true;
+  };
+
+  const loadDemoData = () => {
+    if (!currentUser) return;
+    setBankAccounts(INITIAL_BANK_ACCOUNTS);
+    setCreditCards(INITIAL_CREDIT_CARDS);
+    setCategories(INITIAL_CATEGORIES);
+    setTransactions(INITIAL_TRANSACTIONS);
+    setBudgetTargets([]);
+  };
+
+  const resetUserData = () => {
+    if (!currentUser) return;
+    setBankAccounts([]);
+    setCreditCards([]);
+    setCategories(STARTER_CATEGORIES);
+    setTransactions([]);
+    setBudgetTargets([]);
   };
 
   const logoutUser = () => {
@@ -989,9 +1085,12 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
         usersList,
         loginUser,
         signupUser,
+        loginWithGoogle,
         logoutUser,
         updateUserProfile,
         deleteUserAccount,
+        loadDemoData,
+        resetUserData,
         googleAccount,
         connectGoogleAccount,
         disconnectGoogleAccount,

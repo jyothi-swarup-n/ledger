@@ -11,14 +11,25 @@ import { SettingsModal } from './components/SettingsModal';
 import { AuthModal } from './components/AuthModal';
 import { TransactionDetailModal } from './components/TransactionDetailModal';
 import { OfflineIndicator } from './components/OfflineIndicator';
+import { AuthScreen } from './components/AuthScreen';
 import { Transaction } from './types';
 import { motion, AnimatePresence } from 'motion/react';
 
 function AppContent() {
+  const { currentUser } = useFinance();
   const [activeTab, setActiveTab] = useState<string>('dash');
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [selectedTx, setSelectedTx] = useState<Transaction | null>(null);
+
+  if (!currentUser) {
+    return (
+      <div className="min-h-screen bg-[#0b0e14] text-[#e1e2eb] selection:bg-[#c3f400] selection:text-[#0b0e14] flex flex-col font-sans">
+        <AuthScreen />
+        <OfflineIndicator />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#0b0e14] text-[#e1e2eb] selection:bg-[#c3f400] selection:text-[#0b0e14] flex flex-col font-sans">

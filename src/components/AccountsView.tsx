@@ -221,7 +221,30 @@ export const AccountsView: React.FC = () => {
           </div>
 
           <div className="space-y-3">
-            {bankLedgers.map((item) => (
+            {bankLedgers.length === 0 ? (
+              <div className="p-8 text-center bg-[#141824] border-2 border-dashed border-[#2a334a] rounded-xl space-y-3">
+                <div className="w-12 h-12 rounded-xl bg-[#0b0e14] border border-[#2a334a] flex items-center justify-center text-[#3872ff] mx-auto">
+                  <Building2 className="w-6 h-6" />
+                </div>
+                <div className="space-y-1">
+                  <h3 className="text-sm font-bold text-white uppercase tracking-wider">
+                    No Bank Accounts Added
+                  </h3>
+                  <p className="text-xs text-zinc-400 max-w-sm mx-auto">
+                    Add your checking, savings, or business bank accounts to track active cash float and monthly opening balances.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleOpenAddBank}
+                  className="px-4 py-2 rounded-lg bg-[#3872ff] text-white text-xs font-bold uppercase tracking-wider shadow-brutal-sm hover:brightness-110 inline-flex items-center gap-1.5"
+                >
+                  <Plus className="w-4 h-4" />
+                  <span>Add First Bank Account</span>
+                </button>
+              </div>
+            ) : (
+              bankLedgers.map((item) => (
               <div
                 key={item.account.id}
                 className="bg-[#141824] border-2 border-[#2a334a] rounded-xl p-4 shadow-brutal space-y-3"
@@ -309,7 +332,7 @@ export const AccountsView: React.FC = () => {
                   <span className="font-mono text-zinc-300">Net Flow: {formatINR(item.credit - item.debit, { showSign: true, hideDecimals: true })}</span>
                 </div>
               </div>
-            ))}
+            )))}
           </div>
         </section>
       )}
@@ -331,7 +354,30 @@ export const AccountsView: React.FC = () => {
           </div>
 
           <div className="space-y-3">
-            {cardLedgers.map((item) => (
+            {cardLedgers.length === 0 ? (
+              <div className="p-8 text-center bg-[#141824] border-2 border-dashed border-[#ff4d6d]/30 rounded-xl space-y-3">
+                <div className="w-12 h-12 rounded-xl bg-[#0b0e14] border border-[#ff4d6d]/40 flex items-center justify-center text-[#ff4d6d] mx-auto">
+                  <CreditCardIcon className="w-6 h-6" />
+                </div>
+                <div className="space-y-1">
+                  <h3 className="text-sm font-bold text-white uppercase tracking-wider">
+                    No Credit Cards Added
+                  </h3>
+                  <p className="text-xs text-zinc-400 max-w-sm mx-auto">
+                    Track credit limits, billing due dates, statement payments, and current outstanding balances per card.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleOpenAddCard}
+                  className="px-4 py-2 rounded-lg bg-[#ff4d6d] text-white text-xs font-bold uppercase tracking-wider shadow-brutal-sm hover:brightness-110 inline-flex items-center gap-1.5"
+                >
+                  <Plus className="w-4 h-4" />
+                  <span>Add First Credit Card</span>
+                </button>
+              </div>
+            ) : (
+              cardLedgers.map((item) => (
               <div
                 key={item.card.id}
                 className="bg-[#141824] border-2 border-[#2a334a] rounded-xl p-4 shadow-brutal space-y-3"
@@ -449,7 +495,7 @@ export const AccountsView: React.FC = () => {
                   </div>
                 </div>
               </div>
-            ))}
+            )))}
           </div>
         </section>
       )}

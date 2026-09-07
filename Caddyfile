@@ -1,0 +1,3 @@
+ledger.arsonist.online {
+    reverse_proxy kinetic-ledger:80
+}
