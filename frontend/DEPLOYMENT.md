@@ -27,7 +27,7 @@ Log into your DNS manager (Cloudflare, Hostinger DNS, Namecheap, etc.) and add a
 3. Clone into `/var/www/ledger`:
    ```bash
    git clone <YOUR_REPO_URL> /var/www/ledger
-   cd /var/www/ledger
+    cd /var/www/ledger/frontend
    ```
 
 ### Option B: Quick Direct Upload (rsync / scp)
@@ -40,28 +40,31 @@ rsync -avz --exclude 'node_modules' --exclude '.git' ./ root@200.234.40.180:/var
 
 ## Step 3: Run with Docker Compose (Recommended)
 
-Run the included container:
+Run the included container from the directory that contains the Compose file:
 ```bash
-cd /var/www/ledger
-docker compose up -d --build
+cd /var/www/ledger/frontend
+docker compose up -d --build --force-recreate
+docker compose ps
+docker compose logs --tail=100 kinetic-ledger
 ```
 This builds the production static bundle and serves it through optimized Nginx on port `3050`.
+The public Caddy/Nginx proxy must forward `ledger.arsonist.online` to `127.0.0.1:3050`.
 
 ---
 
 ## Step 4: Configure Reverse Proxy & Automatic SSL
 
 ### Choice A: Using Caddy (Easiest — 2 Lines with Auto SSL)
-If you run Caddy on your VPS, add this block to your `/etc/caddy/Caddyfile`:
+If you run Caddy directly on your VPS, add this block to your `/etc/caddy/Caddyfile`:
 
 ```caddy
 ledger.arsonist.online {
     reverse_proxy 127.0.0.1:3050
 }
 ```
-Reload Caddy:
+Validate and reload Caddy:
 ```bash
-caddy reload
+caddy validate --config /etc/caddy/Caddyfile && systemctl reload caddy
 ```
 *Caddy will automatically generate and renew a free Let's Encrypt SSL certificate.*
 
