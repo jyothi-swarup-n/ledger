@@ -37,6 +37,15 @@ Convert the existing "Kinetic Ledger" PWA (React 19 + Vite + Tailwind, localStor
 - PWA moved to /app/frontend, `start` script + `allowedHosts` added; still running
 - Testing: 29/29 backend tests pass (`/app/backend/tests/backend_test.py`, report `/app/test_reports/iteration_1.json`)
 
+## Implemented — 2026-06 (Session 2: Web auth wiring + onboarding)
+- Renamed brand to **Records by Arsonist**; rebuilt auth as 4 launch screens matching design: Welcome → Create Account → OTP Verify → Login (+ Reset via Forgot Password). Files: `frontend/src/components/AuthScreen.tsx`.
+- Web PWA auth now wired to the REAL FastAPI backend (`frontend/src/services/api.ts`): register request-otp / verify / resend, login, forgot/reset. JWT tokens in localStorage (`rba_access_token`/`rba_refresh_token`). Finance ledger data still browser-local, keyed by backend user id.
+- Signup collects **phone + country code (default +91)**; backend `RegisterRequest` + `_create_user` store `phone`/`country_code`.
+- **Emergent-managed Google Sign-In** implemented: welcome button redirects to auth.emergentagent.com; backend `POST /api/auth/google/session` exchanges the one-time session_id and issues our own JWT (uniform auth). App.tsx handles the `#session_id=` callback. (Manual verification only — cannot be headless-tested.)
+- Backend `.env` CORS_ORIGINS updated to current preview origin; Vite `envPrefix` extended to expose `REACT_APP_*`.
+- **First-run onboarding wizard** (`frontend/src/components/Onboarding.tsx`), shown after auth until completed (localStorage `rba_onboarded_<userId>`): Welcome ("activated") → Add Banks & Credit Cards hub → Add Bank Account / Add Credit Card forms → Set Up Budgets & Limits → Dashboard. Rupee (₹) throughout, fast-select presets HDFC/ICICI/AXIS/SBI/OTHER for banks + cards, no Plaid/telemetry blocks, Save Bank Account + Save Credit Card buttons. Budget step distributes each category limit across its subcategories' individualBudget (or category-level month override when no subs).
+- Testing: frontend E2E 10/10 pass (`/app/test_reports/iteration_3.json`); backend register/verify/login/google-session verified via curl.
+
 ## Backlog
 ### P0 (next session — Mobile core)
 - Scaffold `/app/mobile` Expo app (TypeScript, expo-router, NativeWind, dark neo-brutalist theme #0b0e14/#c3f400)
@@ -46,7 +55,7 @@ Convert the existing "Kinetic Ledger" PWA (React 19 + Vite + Tailwind, localStor
 ### P1
 - Google Sign-In on mobile (expo-auth-session / @react-native-google-signin) + set `GOOGLE_CLIENT_IDS`
 - Set `RESEND_API_KEY` + verified sender domain for real OTP emails
-- Wire PWA (/app/frontend) to backend API (replace localStorage)
+- Wire PWA (/app/frontend) FINANCE DATA to backend API (auth already wired; accounts/tx/budgets still localStorage). Persist onboarding-complete flag on backend user profile so it survives cross-device / cleared storage.
 - Settings: profile aliases, change password, delete account, export share sheet
 ### P2 — Store readiness
 - App icons/splash, `app.json`/EAS build profiles, privacy policy URL, store listings

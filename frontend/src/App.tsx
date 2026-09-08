@@ -14,6 +14,7 @@ import { AuthModal } from './components/AuthModal';
 import { TransactionDetailModal } from './components/TransactionDetailModal';
 import { OfflineIndicator } from './components/OfflineIndicator';
 import { AuthScreen } from './components/AuthScreen';
+import { Onboarding } from './components/Onboarding';
 import { Transaction } from './types';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -30,6 +31,12 @@ function AppContent() {
   );
   const [googleError, setGoogleError] = useState<string | null>(null);
   const googleHandled = useRef(false);
+
+  // First-run onboarding wizard (per authenticated user)
+  const [onboarded, setOnboarded] = useState(false);
+  useEffect(() => {
+    if (currentUser) setOnboarded(!!localStorage.getItem('rba_onboarded_' + currentUser.id));
+  }, [currentUser]);
 
   useEffect(() => {
     if (googleHandled.current) return;
@@ -78,6 +85,20 @@ function AppContent() {
           </div>
         )}
         <AuthScreen />
+        <OfflineIndicator />
+      </div>
+    );
+  }
+
+  if (!onboarded) {
+    return (
+      <div className="min-h-screen bg-[#0b0e14] text-[#e1e2eb] selection:bg-[#c3f400] selection:text-[#0b0e14] font-sans">
+        <Onboarding
+          onComplete={() => {
+            localStorage.setItem('rba_onboarded_' + currentUser.id, '1');
+            setOnboarded(true);
+          }}
+        />
         <OfflineIndicator />
       </div>
     );
