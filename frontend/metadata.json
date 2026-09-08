@@ -1,5 +1,5 @@
 {
-  "name": "Personal & Business Finance Tracker",
+  "name": "Records by Arsonist",
   "description": "Android-inspired personal and business finance tracker for Jyothi & Arsonist Group with Work and Personal budgets, bank and credit card ledgers, month rollover, and dark neo-brutalism design.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]

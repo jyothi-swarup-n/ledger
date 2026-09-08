@@ -1,0 +1,107 @@
+{
+  "project_info": {
+    "app_name": "Records by Arsonist",
+    "design_movement": "Dark Neo-Brutalism",
+    "primary_font": "Space Grotesk",
+    "scope": "Dashboard and Shared Header/Navigation first-pass redesign"
+  },
+  "user_choices_and_requirements": [
+    "Change app name from Kinetic Ledger to 'Records by Arsonist'",
+    "Remove standalone badge that says 'Arsonist'",
+    "Remove 'dashboard' subtitle from the top header",
+    "Remove the top-right month selector / date badge beside the profile button in the Header",
+    "Change 'TOTAL MANAGED ASSETS & NET WORTH' label to 'NET WORTH'",
+    "Ensure the date in the Net Worth hero card is on the same line",
+    "Update chart timeframe date labels from 'D 1-5' and 'D 26-30' to 'Sep 1' and 'Sep 30'",
+    "Change 'allocated accounts & ledgers' section header to 'allocated liquidity'",
+    "Implement Space Grotesk font and Google Stitch Dark Neo-Brutalist aesthetic",
+    "Preserve all working functionality (real financial Context data, 7D/30D chart calculations, transactions stream filter, account ledgers)"
+  ],
+  "colors": {
+    "background": "#0b0e14",
+    "surface_dark": "#10131a",
+    "card_bg": "#141824",
+    "card_bg_alt": "#191c22",
+    "border_color": "#2a334a",
+    "border_color_alt": "#272a31",
+    "primary_lime": "#c3f400",
+    "primary_lime_dark": "#abd600",
+    "cobalt_blue": "#3872ff",
+    "cobalt_blue_bright": "#388bfd",
+    "coral_red": "#ff4d6d",
+    "coral_red_bright": "#ff7b72",
+    "text_primary": "#ffffff",
+    "text_secondary": "#94a3b8",
+    "text_muted": "#8e9379",
+    "text_inverse": "#0b0e14"
+  },
+  "typography": {
+    "font_family": "'Space Grotesk', sans-serif",
+    "font_imports": "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap",
+    "headings": "Space Grotesk, bold/semibold, tight letter-spacing (-0.02em to -0.04em)",
+    "numerical_readouts": "tabular-nums / font-mono, Space Grotesk for alignment",
+    "labels_tags": "Uppercase, font-bold, positive tracking (0.04em to 0.08em)"
+  },
+  "elevation_and_shadows": {
+    "shadow_brutal": "3px 3px 0px #000000",
+    "shadow_brutal_sm": "2px 2px 0px #000000",
+    "shadow_brutal_lg": "4px 4px 0px #000000",
+    "borders": "1.5px to 2px solid #2a334a"
+  },
+  "components_blueprint": {
+    "Header": {
+      "path": "/app/frontend/src/components/Header.tsx",
+      "changes": [
+        "Brand section: Display 'RECORDS BY ARSONIST' with ⚡ minimal icon.",
+        "Remove 'ARSONIST' pill badge.",
+        "Remove 'DASHBOARD' / tab subtitle under the title.",
+        "Remove top-right calendar month dropdown selector.",
+        "Retain PWAInstallButton and user profile avatar button.",
+        "Ensure backdrop-blur-xl bg-[#0b0e14]/90 border-b border-[#2a334a]."
+      ]
+    },
+    "DashboardView": {
+      "path": "/app/frontend/src/components/DashboardView.tsx",
+      "changes": [
+        "Hero Card: Header line with Wallet icon + 'NET WORTH' on left and single-line date range (e.g. 'Sep 1 - Sep 30') on the right.",
+        "Net Worth Amount: High contrast Space Grotesk formatted display value.",
+        "Actions: 'Add Transaction' and 'View Budgets' primary/secondary buttons.",
+        "Cash Flow Engine: 7D/30D velocity dynamics chart with interactive SVG wave, showing 'Sep 1' at start and 'Sep 30' at end.",
+        "Allocated Liquidity Section: Rename section title from 'Allocated Accounts & Ledgers' to 'Allocated Liquidity', horizontal swipe card deck for Bank & Card ledgers.",
+        "Burn Rate Progress Meter: Current Spend vs Monthly Envelope bar.",
+        "Recent Stream: Transaction stream with filters (all/income/work/personal) and explicit +/- debit/credit indicators."
+      ]
+    },
+    "BottomNav": {
+      "path": "/app/frontend/src/components/BottomNav.tsx",
+      "changes": [
+        "Dark Neo-Brutalist sticky bottom bar (`bg-[#0b0e14]/95 border-t border-[#2a334a]`).",
+        "Active tab highlight in Electric Lime `#c3f400` with tactile shadow.",
+        "Central elevated 'Log' button with `bg-[#3872ff]` or `#c3f400`."
+      ]
+    }
+  },
+  "testing_attributes": {
+    "header_brand": "data-testid=\"header-brand-title\"",
+    "header_profile": "data-testid=\"header-profile-button\"",
+    "net_worth_card": "data-testid=\"net-worth-card\"",
+    "net_worth_amount": "data-testid=\"net-worth-amount\"",
+    "net_worth_date": "data-testid=\"net-worth-date-single-line\"",
+    "btn_add_transaction": "data-testid=\"btn-add-transaction\"",
+    "btn_view_budgets": "data-testid=\"btn-view-budgets\"",
+    "cash_flow_chart": "data-testid=\"cash-flow-chart-section\"",
+    "timeframe_7d": "data-testid=\"timeframe-7d-btn\"",
+    "timeframe_30d": "data-testid=\"timeframe-30d-btn\"",
+    "chart_date_start": "data-testid=\"chart-date-sep1\"",
+    "chart_date_end": "data-testid=\"chart-date-sep30\"",
+    "allocated_liquidity": "data-testid=\"allocated-liquidity-section\"",
+    "recent_stream": "data-testid=\"recent-stream-section\"",
+    "bottom_nav": "data-testid=\"bottom-navigation\""
+  },
+  "instructions_to_main_agent": [
+    "Apply all style, branding, and text modifications directly to /app/frontend/src/components/Header.tsx, /app/frontend/src/components/DashboardView.tsx, and /app/frontend/src/components/BottomNav.tsx.",
+    "Verify font Space Grotesk is imported in index.html or index.css.",
+    "Do NOT insert fake or static sample data into the finance context; rely on useFinance() hook data.",
+    "Ensure all data-testid attributes listed in testing_attributes are attached to their respective elements."
+  ]
+}

@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
+import { useLedgerStorage } from '../hooks/useLedgerStorage';
+import { clearTokens } from '../services/api';
 import {
   User,
   Transaction,
@@ -75,6 +77,7 @@ interface FinanceContextType {
   
   // User Auth & Profiles
   usersList: User[];
+  establishSession: (backendUser: any) => void;
   loginUser: (email: string, passwordHash?: string) => boolean;
   signupUser: (name: string, email: string, passwordHash: string) => boolean;
   loginWithGoogle: (email: string, name?: string) => boolean;
@@ -149,12 +152,11 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
   // 2. Month period state (defaulting to September 2026)
   const [selectedMonth, setSelectedMonth] = useState<string>('2026-09');
 
-  // 3. User-scoped entities (Starts 100% empty for new installations)
-  const [bankAccounts, setBankAccounts] = useState<BankAccount[]>([]);
-  const [creditCards, setCreditCards] = useState<CreditCard[]>([]);
-  const [categories, setCategories] = useState<Category[]>(STARTER_CATEGORIES);
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [budgetTargets, setBudgetTargets] = useState<MonthBudgetTarget[]>([]);
+  // 3. User-scoped ledger, hydrated before any persistence can run.
+  const {
+    bankAccounts, setBankAccounts, creditCards, setCreditCards,
+    categories, setCategories, transactions, setTransactions, budgetTargets, setBudgetTargets,
+  } = useLedgerStorage(currentUser?.id ?? null);
 
   // 4. Google Account Cloud Backup state & Profile Aliases
   const [isGoogleBackingUp, setIsGoogleBackingUp] = useState(false);
@@ -259,57 +261,6 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
       localStorage.removeItem(STORAGE_CURRENT_USER_ID);
     }
   }, [currentUser]);
-
-  // Load user data on user change
-  useEffect(() => {
-    if (!currentUser) {
-      setBankAccounts([]);
-      setCreditCards([]);
-      setCategories(STARTER_CATEGORIES);
-      setTransactions([]);
-      setBudgetTargets([]);
-      return;
-    }
-    const userKey = `${STORAGE_DATA_PREFIX}${currentUser.id}`;
-    try {
-      const savedData = localStorage.getItem(userKey);
-      if (savedData) {
-        const parsed = JSON.parse(savedData);
-        setBankAccounts(parsed.bankAccounts || []);
-        setCreditCards(parsed.creditCards || []);
-        setCategories(parsed.categories || STARTER_CATEGORIES);
-        setTransactions(parsed.transactions || []);
-        setBudgetTargets(parsed.budgetTargets || []);
-      } else {
-        // Fresh new user defaults: 100% clean slate starting from scratch
-        setBankAccounts([]);
-        setCreditCards([]);
-        setCategories(STARTER_CATEGORIES);
-        setTransactions([]);
-        setBudgetTargets([]);
-      }
-    } catch (e) {
-      console.error('Failed to load user data:', e);
-    }
-  }, [currentUser?.id]);
-
-  // Persist user data on change
-  useEffect(() => {
-    if (!currentUser) return;
-    const userKey = `${STORAGE_DATA_PREFIX}${currentUser.id}`;
-    try {
-      const payload = {
-        bankAccounts,
-        creditCards,
-        categories,
-        transactions,
-        budgetTargets
-      };
-      localStorage.setItem(userKey, JSON.stringify(payload));
-    } catch (e) {
-      console.error('Failed to persist user data:', e);
-    }
-  }, [currentUser?.id, bankAccounts, creditCards, categories, transactions, budgetTargets]);
 
   // Available chronological months (from transactions, plus Aug, Sep, Oct 2026)
   const availableMonths = useMemo(() => {
@@ -812,6 +763,30 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
   // =========================================================================
   // MULTI-USER AUTH & PROFILE (Section 5.1)
   // =========================================================================
+  // Establish a session from a real backend auth response (email/OTP, login, Google).
+  const establishSession = (backendUser: any) => {
+    if (!backendUser || !backendUser.id) return;
+    const providers: string[] = backendUser.auth_providers || [];
+    const mapped: User = {
+      id: backendUser.id,
+      name: backendUser.name || undefined,
+      email: (backendUser.email || '').toLowerCase(),
+      createdAt: backendUser.created_at || new Date().toISOString(),
+      lastLogin: backendUser.last_login || new Date().toISOString(),
+      profileAliases: backendUser.profile_aliases || undefined,
+      googleAccount: providers.includes('google')
+        ? {
+            email: (backendUser.email || '').toLowerCase(),
+            name: backendUser.name || (backendUser.email || '').split('@')[0],
+            connectedAt: new Date().toISOString(),
+            lastBackupAt: new Date().toISOString(),
+          }
+        : undefined,
+    };
+    setUsersList((prev) => [...prev.filter((u) => u.id !== mapped.id), mapped]);
+    setCurrentUser(mapped);
+  };
+
   const loginUser = (email: string, passwordHash?: string): boolean => {
     const found = usersList.find(
       (u) => u.email.toLowerCase() === email.trim().toLowerCase()
@@ -938,6 +913,7 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
   };
 
   const logoutUser = () => {
+    clearTokens();
     setCurrentUser(null);
   };
 
@@ -1083,6 +1059,7 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
         updateSubcategory,
         deleteSubcategory,
         usersList,
+        establishSession,
         loginUser,
         signupUser,
         loginWithGoogle,

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;font-family:'Space Grotesk',sans-serif;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "primary-container": "#c3f400",
+          "on-secondary-fixed": "#001453",
+          "on-primary-fixed-variant": "#3c4d00",
+          "tertiary-fixed-dim": "#ffb3b2",
+          "on-surface-variant": "#c4c9ac",
+          "surface-container-high": "#272a31",
+          "primary-fixed": "#c3f400",
+          "primary-fixed-dim": "#abd600",
+          "surface-dim": "#10131a",
+          "surface-container-lowest": "#0b0e14",
+          "secondary-fixed": "#dde1ff",
+          "on-tertiary": "#680013",
+          "surface": "#10131a",
+          "on-error-container": "#ffdad6",
+          "on-tertiary-fixed-variant": "#920020",
+          "outline": "#8e9379",
+          "on-background": "#e1e2eb",
+          "on-secondary-fixed-variant": "#0037b9",
+          "on-secondary": "#002584",
+          "surface-tint": "#abd600",
+          "surface-variant": "#32353c",
+          "secondary-fixed-dim": "#b8c4ff",
+          "on-error": "#690005",
+          "primary": "#ffffff",
+          "inverse-primary": "#506600",
+          "inverse-on-surface": "#2e3037",
+          "error": "#ffb4ab",
+          "surface-container-highest": "#32353c",
+          "on-primary": "#283500",
+          "outline-variant": "#444933",
+          "surface-container-low": "#191c22",
+          "background": "#10131a",
+          "secondary": "#b8c4ff",
+          "secondary-container": "#0347e4",
+          "on-primary-container": "#556d00",
+          "on-tertiary-container": "#c51833",
+          "surface-bright": "#363940",
+          "on-tertiary-fixed": "#410008",
+          "inverse-surface": "#e1e2eb",
+          "on-primary-fixed": "#161e00",
+          "on-secondary-container": "#c6cfff",
+          "on-surface": "#e1e2eb",
+          "surface-container": "#1d2026",
+          "error-container": "#93000a",
+          "tertiary-container": "#ffdad9",
+          "tertiary": "#ffffff",
+          "tertiary-fixed": "#ffdad9"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "space-sm": "0.75rem",
+          "margin-mobile": "1rem",
+          "space-xl": "1.5rem",
+          "space-lg": "1.25rem",
+          "margin-tablet": "1.5rem",
+          "space-2xl": "2rem",
+          "space-2xs": "0.25rem",
+          "space-3xl": "3rem",
+          "space-xs": "0.5rem",
+          "gutter-tablet": "1rem",
+          "space-md": "1rem",
+          "gutter-mobile": "0.75rem"
+        },
+        "fontFamily": {
+          "body-sm": [
+            "Space Grotesk"
+          ],
+          "display-lg": [
+            "Space Grotesk"
+          ],
+          "headline-lg": [
+            "Space Grotesk"
+          ],
+          "body-lg": [
+            "Space Grotesk"
+          ],
+          "display-lg-mobile": [
+            "Space Grotesk"
+          ],
+          "headline-sm": [
+            "Space Grotesk"
+          ],
+          "body-md": [
+            "Space Grotesk"
+          ],
+          "label-md": [
+            "Space Grotesk"
+          ],
+          "label-sm": [
+            "Space Grotesk"
+          ],
+          "label-lg": [
+            "Space Grotesk"
+          ],
+          "headline-md": [
+            "Space Grotesk"
+          ]
+        },
+        "fontSize": {
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "400"
+            }
+          ],
+          "display-lg": [
+            "44px",
+            {
+              "lineHeight": "48px",
+              "letterSpacing": "-0.04em",
+              "fontWeight": "700"
+            }
+          ],
+          "headline-lg": [
+            "28px",
+            {
+              "lineHeight": "34px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "700"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "500"
+            }
+          ],
+          "display-lg-mobile": [
+            "34px",
+            {
+              "lineHeight": "38px",
+              "letterSpacing": "-0.03em",
+              "fontWeight": "700"
+            }
+          ],
+          "headline-sm": [
+            "18px",
+            {
+              "lineHeight": "24px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ],
+          "label-md": [
+            "11px",
+            {
+              "lineHeight": "14px",
+              "letterSpacing": "0.06em",
+              "fontWeight": "700"
+            }
+          ],
+          "label-sm": [
+            "10px",
+            {
+              "lineHeight": "12px",
+              "letterSpacing": "0.08em",
+              "fontWeight": "700"
+            }
+          ],
+          "label-lg": [
+            "13px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.04em",
+              "fontWeight": "700"
+            }
+          ],
+          "headline-md": [
+            "22px",
+            {
+              "lineHeight": "28px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ]
+        }
+      },
+    },
+  }
+</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+      background-color: #0b0e14;
+    }
+  </style>
+</head><body class="bg-surface-container-lowest font-body-md text-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary-container selection:text-on-primary-fixed"><header class="fixed top-0 w-full z-50 bg-[#0b0e14]/90 backdrop-blur-xl border-b border-outline-variant/40 pt-safe"><div class="h-16 px-gutter-mobile flex items-center justify-between"><div class="flex items-center gap-space-xs"><img alt="Kinetic Ledger Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9L2THB-JFxMXAW-oDIg5i3D0TGv47IBZ6qzz9gvKcQwjlvhw62OWTCP9S4hsJqGjStX76Cu2jhPdLJXHND8HiCY6Qw0p0XMEZG5sshw09tqIUjOCzOWVjTzwGE2TcTEYd1EY02Jdw1a79vvyZmd7PrP6KcDYdFpS7oHkYm74pqghJQsx41FIp1K0Sl1Uod3Fb3_mAjXnBKnAct7U1bI4iRq2rznU0zot1PzOw014CUPVlMkNTdtPBZw"/><div class="flex flex-col"><span class="font-label-lg text-label-lg tracking-wider text-on-surface uppercase">Kinetic Ledger</span><span class="font-label-sm text-label-sm text-primary-container tracking-widest uppercase">Analytics</span></div></div><div class="flex items-center gap-space-xs"><button aria-label="Notifications" class="w-11 h-11 rounded-lg bg-surface-container border border-outline-variant/50 flex items-center justify-center relative text-on-surface hover:text-primary-container hover:border-primary-container transition-colors focus:outline-none"><span class="material-symbols-outlined text-[24px]">notifications</span><span class="absolute top-2 right-2 w-2.5 h-2.5 bg-primary-container rounded-full ring-2 ring-[#0b0e14]"></span></button><div class="flex items-center justify-center p-0.5 rounded-lg border border-outline-variant/60 bg-surface-container"><img alt="Profile" class="w-8 h-8 rounded-md object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYU_N66s5wC3VW8BjWnA16xAfeP-Q1-6TuvQ8jwgmWnbHVJovwdXEcB3CMdVe2ksas6LVGYgNghtM0FwEWmaBhyty0R5wN1YknsRgz2KUXsX-6ydYdhAMlWVnLw1XBmYChDP_ZFrQ6WgQ7-vzfsuNbUywt7zcoQSfdHGFZBwehD-W2v8aZkPsn6KDL1DngZpc56j57dRvo73WIR-yCG7OkhZEeS2DcS_ylxiLvf4FCx4_bDBWWxk_gkg"/></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface-container-lowest px-gutter-mobile"><div class="flex flex-col w-full gap-space-md mt-4">
+<!-- Header Filter Switcher -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-outline tracking-wider uppercase">Audit &amp; Trends</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-white tracking-tight">May 2025 Analytics</h2>
+</div>
+<button aria-label="Export report" class="w-10 h-10 rounded-lg bg-surface-container border border-outline-variant/60 flex items-center justify-center text-white shadow-[2px_2px_0px_#000] active:translate-y-0.5 transition-transform">
+<span class="material-symbols-outlined text-[20px]">ios_share</span>
+</button>
+</div>
+<!-- Timeframe Switcher Pills -->
+<div class="flex items-center gap-space-2xs overflow-x-auto py-1 scrollbar-none" id="timeframe-selector">
+<button class="px-space-md py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container border border-outline-variant/50 text-on-surface-variant hover:text-white transition-all hover:bg-surface-container-high" data-filter="week">Week</button>
+<button class="px-space-md py-1.5 rounded-full font-label-sm text-label-sm bg-secondary-container text-white font-bold border border-primary-container/80 shadow-[0_0_12px_rgba(3,71,228,0.5)] transition-all flex items-center gap-1" data-filter="month">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+  Month
+</button>
+<button class="px-space-md py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container border border-outline-variant/50 text-on-surface-variant hover:text-white transition-all hover:bg-surface-container-high" data-filter="quarter">Quarter</button>
+<button class="px-space-md py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container border border-outline-variant/50 text-on-surface-variant hover:text-white transition-all hover:bg-surface-container-high" data-filter="year">Year</button>
+</div>
+</div>
+<!-- Spending Velocity Card -->
+<div class="bg-[#141824] rounded-xl p-space-md border-2 border-outline-variant/50 shadow-[4px_4px_0px_#000000] flex flex-col gap-space-sm relative overflow-hidden">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-lg bg-primary-container text-on-primary-fixed flex items-center justify-center shadow-[1px_1px_0px_#000]">
+<span class="material-symbols-outlined text-[20px] font-bold">speed</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-outline tracking-wider uppercase block font-bold">Pacing Engine</span>
+<span class="font-headline-sm text-headline-sm text-white font-bold">Velocity Comparison</span>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-primary-container text-on-primary-fixed font-label-sm text-label-sm font-bold flex items-center gap-1 border border-[#abd600] shadow-[0_0_10px_rgba(195,244,0,0.35)]">
+<span class="material-symbols-outlined text-[15px] font-bold">arrow_downward</span>
+        -12% Drift
+      </span>
+</div>
+<!-- Micro Stat Row -->
+<div class="grid grid-cols-2 gap-space-xs mt-1">
+<div class="p-2.5 rounded-lg bg-surface-container-lowest/80 border border-outline-variant/40 flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface-variant">May Total to Date</span>
+<span class="font-headline-md text-headline-md font-bold text-white mt-0.5 tracking-tight">$3,420.80</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-lowest/80 border border-outline-variant/40 flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface-variant">3-Mo Benchmark</span>
+<span class="font-headline-md text-headline-md font-bold text-outline mt-0.5 tracking-tight">$3,890.00</span>
+</div>
+</div>
+<!-- Inline SVG Velocity Chart -->
+<div class="w-full h-36 relative mt-1">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 320 120">
+<defs>
+<lineargradient id="velocityFill" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#0347e4" stop-opacity="0.45"></stop>
+<stop offset="100%" stop-color="#0347e4" stop-opacity="0.0"></stop>
+</lineargradient>
+<filter height="140%" id="neonGlow" width="140%" x="-20%" y="-20%">
+<fedropshadow dx="0" dy="0" flood-color="#3b82f6" stddeviation="2.5"></fedropshadow>
+</filter>
+<filter height="200%" id="limeGlow" width="200%" x="-50%" y="-50%">
+<fedropshadow dx="0" dy="0" flood-color="#c3f400" stddeviation="3"></fedropshadow>
+</filter>
+</defs>
+<!-- Guide lines -->
+<line stroke="#1d2026" stroke-dasharray="3,3" stroke-width="1" x1="0" x2="320" y1="20" y2="20"></line>
+<line stroke="#1d2026" stroke-dasharray="3,3" stroke-width="1" x1="0" x2="320" y1="60" y2="60"></line>
+<line stroke="#1d2026" stroke-dasharray="3,3" stroke-width="1" x1="0" x2="320" y1="100" y2="100"></line>
+<!-- Benchmark Trajectory (dashed line) -->
+<path d="M 0 110 Q 80 85 160 55 T 320 15" fill="none" stroke="#8e9379" stroke-dasharray="4,4" stroke-width="2"></path>
+<!-- May Actual Trajectory with Bend at Day 15 (x=160) -->
+<path d="M 0 110 Q 80 80 160 52 T 320 38 L 320 115 L 0 115 Z" fill="url(#velocityFill)"></path>
+<path d="M 0 110 Q 80 80 160 52 T 320 38" fill="none" filter="url(#neonGlow)" stroke="#2563eb" stroke-width="3.5"></path>
+<!-- Day 15 Threshold Marker (Electric Lime) -->
+<line filter="url(#limeGlow)" stroke="#c3f400" stroke-dasharray="2,2" stroke-width="2" x1="160" x2="160" y1="10" y2="115"></line>
+<circle cx="160" cy="52" fill="#10131a" r="5" stroke="#c3f400" stroke-width="2.5"></circle>
+<circle cx="160" cy="52" fill="#c3f400" r="2.5"></circle>
+</svg>
+<!-- Day label indicators -->
+<div class="flex justify-between items-center text-on-surface-variant font-label-sm text-label-sm mt-1">
+<span>Day 1</span>
+<span class="text-primary-container font-bold flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-primary-container inline-block"></span>Day 15 (Pivot)</span>
+<span>Day 31 (Target)</span>
+</div>
+</div>
+<!-- Velocity Highlight Footer Banner -->
+<div class="p-space-xs rounded-lg bg-surface-container-low border border-outline-variant/40 flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary-container text-[20px] shrink-0">insights</span>
+<p class="font-body-sm text-body-sm text-on-surface">
+        Spending velocity slowed by <strong class="font-bold text-primary-container">12% after Day 15</strong>, putting you <span class="text-white font-bold">$469 below</span> your monthly cap.
+      </p>
+</div>
+</div>
+<!-- Subscription Audit & Recurring Leaks Card -->
+<div class="bg-surface-container rounded-xl p-space-md border-2 border-outline-variant/50 shadow-[4px_4px_0px_#000000] flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-lg bg-error-container text-error flex items-center justify-center border border-error/30 shadow-[1px_1px_0px_#000]">
+<span class="material-symbols-outlined text-[18px]">credit_card_off</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-error tracking-wider uppercase block font-bold">Audit Triggered</span>
+<span class="font-headline-sm text-headline-sm text-white font-bold">Recurring Leak Detector</span>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-error-container text-[#ffdad6] border border-error/40 font-label-sm text-label-sm font-bold shadow-[0_0_8px_rgba(255,180,171,0.2)]">
+        1 ALERT
+      </span>
+</div>
+<!-- High-Density Metric Strip -->
+<div class="p-space-xs rounded-lg bg-surface-container-lowest border border-outline-variant/40 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Active Subscriptions</span>
+<span class="font-headline-sm text-headline-sm text-white font-bold">9 Services</span>
+</div>
+<div class="h-8 w-px bg-outline-variant/40"></div>
+<div class="flex flex-col items-end">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Committed Burn</span>
+<span class="font-headline-md text-headline-md font-bold text-white tracking-tight">$248.00<span class="font-body-sm text-body-sm text-on-surface-variant font-normal">/mo</span></span>
+</div>
+</div>
+<!-- Targeted Leak Alert Item -->
+<div class="p-space-sm rounded-xl bg-surface-container-low border border-outline-variant/50 flex flex-col gap-space-xs transition-all hover:border-outline">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high border border-outline-variant/50 flex items-center justify-center font-headline-sm text-headline-sm text-primary-container shadow-[1px_1px_0px_#000]">
+<span class="material-symbols-outlined text-[22px]">draw</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-body-lg text-body-lg text-white font-bold">Figma Professional</span>
+<span class="px-1.5 py-0.5 rounded bg-error-container text-[#ffb4ab] border border-error/30 font-label-sm text-label-sm font-bold uppercase">Dormant</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">No account logins recorded in 45 days</span>
+</div>
+</div>
+<span class="font-headline-sm text-headline-sm text-white font-bold">$15<span class="font-body-sm text-body-sm text-on-surface-variant font-normal">/mo</span></span>
+</div>
+<div class="flex items-center gap-space-xs mt-1">
+<button class="flex-1 py-2 rounded-lg bg-error-container hover:bg-[#b00020] text-white border border-error/50 font-label-sm text-label-sm tracking-wider uppercase font-bold active:scale-[0.98] transition-transform flex items-center justify-center gap-1.5 shadow-[2px_2px_0px_#000]">
+<span class="material-symbols-outlined text-[16px]">cancel</span>
+          Review / Cancel
+        </button>
+<button class="px-space-md py-2 rounded-lg bg-surface-container-highest border border-outline-variant/60 text-white font-label-sm text-label-sm uppercase font-bold hover:bg-surface-bright transition-colors shadow-[2px_2px_0px_#000]">
+          Keep
+        </button>
+</div>
+</div>
+</div>
+<!-- Category Breakdown (Donut + Segmented Metric Distribution) -->
+<div class="bg-surface-container rounded-xl p-space-md border-2 border-outline-variant/50 shadow-[4px_4px_0px_#000000] flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-outline tracking-wider uppercase block font-bold">Allocation Splits</span>
+<h3 class="font-headline-sm text-headline-sm text-white font-bold">Category Distribution</h3>
+</div>
+<span class="font-body-sm text-body-sm text-primary-container font-semibold">Total: $4,680</span>
+</div>
+<!-- Segmented Donut Visual + Center Stat -->
+<div class="flex items-center justify-center gap-space-md py-2">
+<div class="relative w-36 h-36 shrink-0 flex items-center justify-center">
+<!-- SVG Radial Donut Chart -->
+<svg class="w-full h-full -rotate-90" viewbox="0 0 100 100">
+<!-- Background track -->
+<circle cx="50" cy="50" fill="none" r="38" stroke="#191c22" stroke-width="12"></circle>
+<!-- Housing: 38% (offset 0, dash 95.5) -> Cobalt Blue -->
+<circle cx="50" cy="50" fill="none" r="38" stroke="#0347e4" stroke-dasharray="95.5 155.8" stroke-dashoffset="0" stroke-width="12"></circle>
+<!-- Food: 22% (offset -95.5, dash 55.3) -> Electric Lime -->
+<circle cx="50" cy="50" fill="none" r="38" stroke="#c3f400" stroke-dasharray="55.3 196" stroke-dashoffset="-95.5" stroke-width="12"></circle>
+<!-- Savings: 15% (offset -150.8, dash 37.7) -> Emerald/Teal -->
+<circle cx="50" cy="50" fill="none" r="38" stroke="#10b981" stroke-dasharray="37.7 213.6" stroke-dashoffset="-150.8" stroke-width="12"></circle>
+<!-- Shopping: 14% (offset -188.5, dash 35.2) -> Neon Coral / Red -->
+<circle cx="50" cy="50" fill="none" r="38" stroke="#f43f5e" stroke-dasharray="35.2 216.1" stroke-dashoffset="-188.5" stroke-width="12"></circle>
+<!-- Transit: 11% (offset -223.7, dash 27.6) -> Slate outline -->
+<circle cx="50" cy="50" fill="none" r="38" stroke="#8e9379" stroke-dasharray="27.6 223.7" stroke-dashoffset="-223.7" stroke-width="12"></circle>
+</svg>
+<!-- Donut Center Stats -->
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold tracking-wider">Top</span>
+<span class="font-headline-md text-headline-md font-bold text-white leading-tight">38%</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant leading-none">Housing</span>
+</div>
+</div>
+<!-- Segment Summary Highlights -->
+<div class="flex flex-col gap-1.5 flex-1 min-w-0">
+<div class="flex items-center justify-between p-1.5 rounded-lg bg-surface-container-low border border-outline-variant/30">
+<div class="flex items-center gap-1.5 truncate">
+<span class="w-2.5 h-2.5 rounded-full bg-[#0347e4] shadow-[0_0_6px_#0347e4] shrink-0"></span>
+<span class="font-body-sm text-body-sm text-white truncate font-medium">Housing</span>
+</div>
+<span class="font-body-sm text-body-sm font-bold text-white">38%</span>
+</div>
+<div class="flex items-center justify-between p-1.5 rounded-lg bg-surface-container-low border border-outline-variant/30">
+<div class="flex items-center gap-1.5 truncate">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container shadow-[0_0_6px_#c3f400] shrink-0"></span>
+<span class="font-body-sm text-body-sm text-white truncate font-medium">Food &amp; Dining</span>
+</div>
+<span class="font-body-sm text-body-sm font-bold text-primary-container">22%</span>
+</div>
+<div class="flex items-center justify-between p-1.5 rounded-lg bg-surface-container-low border border-outline-variant/30">
+<div class="flex items-center gap-1.5 truncate">
+<span class="w-2.5 h-2.5 rounded-full bg-[#8e9379] shrink-0"></span>
+<span class="font-body-sm text-body-sm text-white truncate font-medium">Auto &amp; Transit</span>
+</div>
+<span class="font-body-sm text-body-sm font-bold text-white">11%</span>
+</div>
+</div>
+</div>
+<!-- Segmented Allocation Bar Strip -->
+<div class="flex w-full h-3 rounded-full overflow-hidden mt-1 gap-0.5 border border-outline-variant/40 bg-surface-container-lowest p-0.5">
+<div class="h-full bg-[#0347e4] rounded-sm" style="width: 38%" title="Housing 38%"></div>
+<div class="h-full bg-primary-container rounded-sm" style="width: 22%" title="Food 22%"></div>
+<div class="h-full bg-[#10b981] rounded-sm" style="width: 15%" title="Savings 15%"></div>
+<div class="h-full bg-[#f43f5e] rounded-sm" style="width: 14%" title="Shopping 14%"></div>
+<div class="h-full bg-[#8e9379] rounded-sm" style="width: 11%" title="Transit 11%"></div>
+</div>
+<!-- Interactive Filter Legend Chips -->
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low border border-outline-variant/40 text-on-surface font-label-sm text-label-sm flex items-center gap-1.5 cursor-pointer hover:border-white transition-colors">
+<span class="w-2 h-2 rounded-full bg-[#f43f5e]"></span>
+        Shopping (14%)
+      </span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low border border-outline-variant/40 text-on-surface font-label-sm text-label-sm flex items-center gap-1.5 cursor-pointer hover:border-white transition-colors">
+<span class="w-2 h-2 rounded-full bg-[#10b981]"></span>
+        Savings Stash (15%)
+      </span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low border border-outline-variant/40 text-on-surface font-label-sm text-label-sm flex items-center gap-1.5 cursor-pointer hover:border-white transition-colors">
+<span class="w-2 h-2 rounded-full bg-[#8e9379]"></span>
+        Transit (11%)
+      </span>
+</div>
+</div>
+<!-- Smart Predictive AI Insights Card -->
+<div class="bg-[#1a2035] rounded-xl p-space-md border-2 border-[#0347e4] shadow-[4px_4px_0px_#000000] text-on-surface flex flex-col gap-space-sm relative overflow-hidden">
+<!-- Decorative subtle shimmer icon overlay -->
+<div class="absolute -right-4 -bottom-4 opacity-15 pointer-events-none text-primary-container">
+<span class="material-symbols-outlined text-[120px]">auto_awesome</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-lg bg-secondary-container text-white flex items-center justify-center shadow-[1px_1px_0px_#000]">
+<span class="material-symbols-outlined text-[18px]">psychology</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary tracking-wider uppercase font-bold">Predictive AI Engine</span>
+<span class="font-headline-sm text-headline-sm text-white font-bold">Trajectory Forecast</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-secondary-container text-white border border-[#3b82f6] font-label-sm text-label-sm font-bold shadow-[0_0_8px_rgba(3,71,228,0.4)]">
+        98% CONFIDENCE
+      </span>
+</div>
+<!-- Highlighted Projection Metric Box -->
+<div class="p-space-sm rounded-lg bg-surface-container-lowest/90 border border-outline-variant/50 backdrop-blur-sm flex items-center justify-between shadow-[2px_2px_0px_#000]">
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Projected Month-End Savings</span>
+<span class="font-display-lg text-display-lg-mobile font-bold text-primary-container tracking-tight" style="text-shadow: 0 0 16px rgba(195,244,0,0.3);">$2,180.00</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="px-2 py-1 rounded-full bg-primary-container text-on-primary-fixed font-label-sm text-label-sm font-bold flex items-center gap-1 shadow-[0_0_8px_rgba(195,244,0,0.35)]">
+<span class="material-symbols-outlined text-[14px] font-bold">trending_up</span>
+          +$340 Ahead
+        </span>
+</div>
+</div>
+<!-- Narrative Insight Recommendation -->
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+      If dining spending holds below <strong class="font-bold text-primary-container">$45/day</strong> over the next 11 days, you will hit your <span class="underline decoration-primary-container decoration-2 underline-offset-2 font-bold text-white">Kyoto Summer Vacation</span> savings goal <strong class="text-white">14 days early</strong>.
+    </p>
+<!-- Contextual Quick Action CTA -->
+<div class="pt-1 flex items-center gap-space-xs">
+<button class="flex-1 py-2.5 rounded-lg bg-primary-container hover:bg-[#abd600] text-on-primary-fixed border border-white/20 font-label-sm text-label-sm tracking-wider uppercase font-bold shadow-[3px_3px_0px_#000] active:translate-y-0.5 transition-transform flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] font-bold">lock_clock</span>
+        Lock $45 Daily Guardrail
+      </button>
+<button aria-label="Dismiss insight" class="w-10 h-10 rounded-lg bg-surface-container border border-outline-variant/60 flex items-center justify-center text-white shadow-[2px_2px_0px_#000] active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]">thumb_up</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+  // Simple micro-interaction for timeframe switcher pills
+  const selector = document.getElementById('timeframe-selector');
+  if (selector) {
+    const buttons = selector.querySelectorAll('button');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => {
+          b.className = 'px-space-md py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container border border-outline-variant/50 text-on-surface-variant hover:text-white transition-all hover:bg-surface-container-high';
+        });
+        btn.className = 'px-space-md py-1.5 rounded-full font-label-sm text-label-sm bg-secondary-container text-white font-bold border border-primary-container/80 shadow-[0_0_12px_rgba(3,71,228,0.5)] transition-all';
+      });
+    });
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-[#0b0e14]/90 backdrop-blur-xl border-t border-outline-variant/40 shadow-[0_-2px_10px_rgba(0,0,0,0.5)]"><div class="h-20 px-space-2xs flex items-center justify-around"><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] py-1 px-2 text-on-surface-variant hover:text-white transition-transform" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[22px]">space_dashboard</span><span class="font-label-sm text-label-sm tracking-tight mt-1">Dash</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] py-1 px-2 text-on-surface-variant hover:text-white transition-transform" data-path="budgets" href="#"><span class="material-symbols-outlined text-[22px]">account_balance_wallet</span><span class="font-label-sm text-label-sm tracking-tight mt-1">Budgets</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] py-1 px-2 text-on-surface-variant hover:text-primary-container transition-transform" data-path="log" href="#"><span class="material-symbols-outlined text-[24px] text-primary-container">add_box</span><span class="font-label-sm text-label-sm tracking-tight mt-1">Log</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] py-1 px-2 transition-transform text-primary-container font-bold scale-[1.02] border-b-2 border-primary-container pb-0.5" data-path="analytics" href="#"><span class="material-symbols-outlined text-[22px]">insights</span><span class="font-label-sm text-label-sm tracking-tight mt-0.5 text-white">Analytics</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] py-1 px-2 text-on-surface-variant hover:text-white transition-transform" data-path="accounts" href="#"><span class="material-symbols-outlined text-[22px]">credit_card</span><span class="font-label-sm text-label-sm tracking-tight mt-1">Accounts</span></a></div></nav></body></html>

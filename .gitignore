@@ -13,3 +13,10 @@ frontend/node_modules/
 backend/__pycache__/
 **/__pycache__/
 .pytest_cache/
+.env
+.env.*
+*.env
+credentials.json
+*.pem
+*.key
+.credentials

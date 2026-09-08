@@ -6,6 +6,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig(() => {
   return {
+    envPrefix: ['VITE_', 'REACT_APP_'],
     plugins: [
       react(),
       tailwindcss(),
@@ -14,8 +15,8 @@ export default defineConfig(() => {
         includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'icon.svg', 'pwa-192x192.png', 'pwa-512x512.png'],
         manifest: {
           id: '/',
-          name: 'Kinetic Ledger',
-          short_name: 'Kinetic',
+          name: 'Records by Arsonist',
+          short_name: 'Records',
           description: 'Personal & business finance ledger for Arsonist Group.',
           theme_color: '#0b0e14',
           background_color: '#0b0e14',
@@ -88,7 +89,7 @@ export default defineConfig(() => {
       },
     },
     server: {
-      allowedHosts: true,
+      allowedHosts: true as const,
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
       // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',

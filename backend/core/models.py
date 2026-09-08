@@ -19,6 +19,8 @@ class RegisterRequest(BaseModel):
     name: str = Field(min_length=1, max_length=80)
     email: EmailStr
     password: str = Field(min_length=6, max_length=128)
+    phone: Optional[str] = Field(default=None, max_length=20)
+    country_code: Optional[str] = Field(default="+91", max_length=6)
 
 
 class VerifyOtpRequest(BaseModel):
@@ -39,6 +41,11 @@ class LoginRequest(BaseModel):
 
 class GoogleLoginRequest(BaseModel):
     id_token: str
+    device: Optional[str] = None
+
+
+class GoogleSessionRequest(BaseModel):
+    session_id: Optional[str] = None
     device: Optional[str] = None
 
 

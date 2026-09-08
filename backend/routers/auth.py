@@ -3,13 +3,14 @@ import asyncio
 import logging
 from datetime import timedelta
 
+import httpx
 from fastapi import APIRouter, Depends, HTTPException, Request
 from google.oauth2 import id_token as google_id_token
 from google.auth.transport import requests as google_requests
 
 from core.db import db, NO_ID, ENTITY_COLLECTIONS
 from core.models import (
-    RegisterRequest, VerifyOtpRequest, EmailOnly, LoginRequest, GoogleLoginRequest,
+    RegisterRequest, VerifyOtpRequest, EmailOnly, LoginRequest, GoogleLoginRequest, GoogleSessionRequest,
     RefreshRequest, ResetPasswordRequest, ChangePasswordRequest, UpdateProfileRequest, DeleteAccountRequest,
 )
 from core.security import (
@@ -26,6 +27,8 @@ logger = logging.getLogger("auth")
 OTP_TTL_MINUTES = 10
 OTP_MAX_ATTEMPTS = 5
 OTP_RESEND_COOLDOWN_SECONDS = 45
+
+EMERGENT_SESSION_URL = "https://demobackend.emergentagent.com/auth/v1/env/oauth/session-data"
 
 DEFAULT_ALIASES = {"Work": "Work", "Personal": "Personal"}
 
@@ -62,10 +65,12 @@ def _otp_response(email: str, code: str, message: str) -> dict:
     return resp
 
 
-async def _create_user(email: str, name: str, password_hash: str | None, provider: str, picture: str | None = None) -> dict:
+async def _create_user(email: str, name: str, password_hash: str | None, provider: str, picture: str | None = None,
+                       phone: str | None = None, country_code: str | None = None) -> dict:
     user = {
         "id": new_id("user"), "email": email, "name": name, "password_hash": password_hash,
         "auth_providers": [provider], "email_verified": True, "picture": picture,
+        "phone": phone, "country_code": country_code or "+91",
         "profile_aliases": dict(DEFAULT_ALIASES), "currency": "INR",
         "created_at": now_iso(), "last_login": now_iso(),
     }
@@ -80,7 +85,10 @@ async def register_request_otp(body: RegisterRequest):
     email = body.email.lower().strip()
     if await db.users.find_one({"email": email}, NO_ID):
         raise HTTPException(status_code=409, detail="An account with this email already exists. Please log in.")
-    code = await _store_otp(email, "register", {"name": body.name.strip(), "password_hash": hash_password(body.password)})
+    code = await _store_otp(email, "register", {
+        "name": body.name.strip(), "password_hash": hash_password(body.password),
+        "phone": (body.phone or "").strip() or None, "country_code": body.country_code or "+91",
+    })
     try:
         await send_verification_otp(email, code)
     except Exception:
@@ -96,7 +104,10 @@ async def register_resend_otp(body: EmailOnly):
         raise HTTPException(status_code=400, detail="No pending registration for this email.")
     if (now_utc() - pending["created_at"].replace(tzinfo=now_utc().tzinfo)).total_seconds() < OTP_RESEND_COOLDOWN_SECONDS:
         raise HTTPException(status_code=429, detail="Please wait before requesting another code.")
-    code = await _store_otp(email, "register", {"name": pending["name"], "password_hash": pending["password_hash"]})
+    code = await _store_otp(email, "register", {
+        "name": pending["name"], "password_hash": pending["password_hash"],
+        "phone": pending.get("phone"), "country_code": pending.get("country_code", "+91"),
+    })
     await send_verification_otp(email, code)
     return _otp_response(email, code, "A new verification code was sent.")
 
@@ -107,7 +118,8 @@ async def register_verify(body: VerifyOtpRequest):
     pending = await _consume_otp(email, "register", body.code)
     if await db.users.find_one({"email": email}, NO_ID):
         raise HTTPException(status_code=409, detail="Account already exists. Please log in.")
-    user = await _create_user(email, pending["name"], pending["password_hash"], "password")
+    user = await _create_user(email, pending["name"], pending["password_hash"], "password",
+                              phone=pending.get("phone"), country_code=pending.get("country_code", "+91"))
     return await build_auth_response(user, body.device)
 
 
@@ -153,6 +165,36 @@ async def google_login(body: GoogleLoginRequest):
         user.update(update)
     else:
         user = await _create_user(email, info.get("name") or email.split("@")[0], None, "google", info.get("picture"))
+    return await build_auth_response(user, body.device)
+
+
+@router.post("/google/session")
+async def google_session(body: GoogleSessionRequest, request: Request):
+    # Emergent-managed Google Auth: exchange the one-time session_id for the
+    # authenticated Google profile, then issue our own JWT tokens for a uniform auth layer.
+    session_id = body.session_id or request.headers.get("X-Session-ID")
+    if not session_id:
+        raise HTTPException(status_code=400, detail="Missing Google session id.")
+    try:
+        async with httpx.AsyncClient(timeout=15) as http_client:
+            resp = await http_client.get(EMERGENT_SESSION_URL, headers={"X-Session-ID": session_id})
+    except httpx.HTTPError:
+        raise HTTPException(status_code=502, detail="Could not reach Google session service.")
+    if resp.status_code != 200:
+        raise HTTPException(status_code=401, detail="Google session is invalid or expired.")
+    data = resp.json()
+    email = (data.get("email") or "").lower().strip()
+    if not email:
+        raise HTTPException(status_code=401, detail="Google session did not return an email.")
+    user = await db.users.find_one({"email": email}, NO_ID)
+    if user:
+        update = {"last_login": now_iso(), "picture": user.get("picture") or data.get("picture")}
+        if "google" not in user.get("auth_providers", []):
+            update["auth_providers"] = user.get("auth_providers", []) + ["google"]
+        await db.users.update_one({"id": user["id"]}, {"$set": update})
+        user.update(update)
+    else:
+        user = await _create_user(email, data.get("name") or email.split("@")[0], None, "google", data.get("picture"))
     return await build_auth_response(user, body.device)
 
 

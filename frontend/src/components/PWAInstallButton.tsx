@@ -25,6 +25,7 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
       return (
         <button
           onClick={install}
+          data-testid="pwa-install-full-button"
           className={`w-full py-2.5 px-3 rounded-xl bg-[#c3f400] text-[#0b0e14] font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-brutal-sm hover:brightness-105 active:scale-95 transition-all ${className}`}
         >
           <Download className="w-4 h-4" />
@@ -36,8 +37,9 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
     return (
       <button
         onClick={install}
+        data-testid="pwa-install-compact-button"
         className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#c3f400] text-[#0b0e14] text-[11px] font-bold shadow-brutal-sm hover:brightness-105 active:scale-95 transition-all ${className}`}
-        title="Install Kinetic Ledger App"
+        title="Install Records by Arsonist"
       >
         <Download className="w-3.5 h-3.5" />
         <span className="hidden sm:inline">Install App</span>
@@ -52,6 +54,7 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
         {variant === 'full' ? (
           <button
             onClick={() => setShowIOSGuide(true)}
+            data-testid="pwa-ios-full-button"
             className={`w-full py-2.5 px-3 rounded-xl bg-[#141824] border border-[#2a334a] text-zinc-200 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 hover:border-[#c3f400] transition-all ${className}`}
           >
             <Smartphone className="w-4 h-4 text-[#c3f400]" />
@@ -60,6 +63,7 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
         ) : (
           <button
             onClick={() => setShowIOSGuide(true)}
+            data-testid="pwa-ios-compact-button"
             className={`flex items-center gap-1.5 px-2 py-1 rounded-lg bg-[#141824] border border-[#2a334a] text-zinc-300 hover:text-white text-[10px] font-bold ${className}`}
             title="Install on iPhone"
           >
@@ -69,7 +73,7 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
         )}
 
         {showIOSGuide && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in">
+          <div data-testid={`pwa-ios-guide-${variant}`} role="dialog" aria-modal="true" aria-label="Install on iPhone" className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in">
             <div className="w-full max-w-sm rounded-2xl bg-[#141824] border-2 border-[#c3f400] p-5 shadow-brutal-lg space-y-4 text-white">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
@@ -78,6 +82,8 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
                 </div>
                 <button
                   onClick={() => setShowIOSGuide(false)}
+                  data-testid={`pwa-ios-guide-close-${variant}`}
+                  aria-label="Close install guide"
                   className="p-1 text-zinc-400 hover:text-white"
                 >
                   <X className="w-4 h-4" />
@@ -96,6 +102,7 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
               </div>
               <button
                 onClick={() => setShowIOSGuide(false)}
+                data-testid={`pwa-ios-guide-confirm-${variant}`}
                 className="w-full py-2 rounded-lg bg-[#c3f400] text-[#0b0e14] text-xs font-bold uppercase"
               >
                 Got It

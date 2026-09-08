@@ -244,7 +244,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, o
                       Mobile & Desktop Installation
                     </span>
                     <span className="text-[11px] text-zinc-400">
-                      Install Kinetic Ledger to your phone's home screen
+                      Install Records by Arsonist to your phone's home screen
                     </span>
                   </div>
                 </div>

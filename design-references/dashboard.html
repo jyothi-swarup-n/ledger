@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;font-family:'Space Grotesk',sans-serif;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "primary-container": "#c3f400",
+          "on-secondary-fixed": "#001453",
+          "on-primary-fixed-variant": "#3c4d00",
+          "tertiary-fixed-dim": "#ffb3b2",
+          "on-surface-variant": "#c4c9ac",
+          "surface-container-high": "#272a31",
+          "primary-fixed": "#c3f400",
+          "primary-fixed-dim": "#abd600",
+          "surface-dim": "#10131a",
+          "surface-container-lowest": "#0b0e14",
+          "secondary-fixed": "#dde1ff",
+          "on-tertiary": "#680013",
+          "surface": "#10131a",
+          "on-error-container": "#ffdad6",
+          "on-tertiary-fixed-variant": "#920020",
+          "outline": "#8e9379",
+          "on-background": "#e1e2eb",
+          "on-secondary-fixed-variant": "#0037b9",
+          "on-secondary": "#002584",
+          "surface-tint": "#abd600",
+          "surface-variant": "#32353c",
+          "secondary-fixed-dim": "#b8c4ff",
+          "on-error": "#690005",
+          "primary": "#ffffff",
+          "inverse-primary": "#506600",
+          "inverse-on-surface": "#2e3037",
+          "error": "#ffb4ab",
+          "surface-container-highest": "#32353c",
+          "on-primary": "#283500",
+          "outline-variant": "#444933",
+          "surface-container-low": "#191c22",
+          "background": "#10131a",
+          "secondary": "#b8c4ff",
+          "secondary-container": "#0347e4",
+          "on-primary-container": "#556d00",
+          "on-tertiary-container": "#c51833",
+          "surface-bright": "#363940",
+          "on-tertiary-fixed": "#410008",
+          "inverse-surface": "#e1e2eb",
+          "on-primary-fixed": "#161e00",
+          "on-secondary-container": "#c6cfff",
+          "on-surface": "#e1e2eb",
+          "surface-container": "#1d2026",
+          "error-container": "#93000a",
+          "tertiary-container": "#ffdad9",
+          "tertiary": "#ffffff",
+          "tertiary-fixed": "#ffdad9"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "space-sm": "0.75rem",
+          "margin-mobile": "1rem",
+          "space-xl": "1.5rem",
+          "space-lg": "1.25rem",
+          "margin-tablet": "1.5rem",
+          "space-2xl": "2rem",
+          "space-2xs": "0.25rem",
+          "space-3xl": "3rem",
+          "space-xs": "0.5rem",
+          "gutter-tablet": "1rem",
+          "space-md": "1rem",
+          "gutter-mobile": "0.75rem"
+        },
+        "fontFamily": {
+          "body-sm": [
+            "Space Grotesk"
+          ],
+          "display-lg": [
+            "Space Grotesk"
+          ],
+          "headline-lg": [
+            "Space Grotesk"
+          ],
+          "body-lg": [
+            "Space Grotesk"
+          ],
+          "display-lg-mobile": [
+            "Space Grotesk"
+          ],
+          "headline-sm": [
+            "Space Grotesk"
+          ],
+          "body-md": [
+            "Space Grotesk"
+          ],
+          "label-md": [
+            "Space Grotesk"
+          ],
+          "label-sm": [
+            "Space Grotesk"
+          ],
+          "label-lg": [
+            "Space Grotesk"
+          ],
+          "headline-md": [
+            "Space Grotesk"
+          ]
+        },
+        "fontSize": {
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "400"
+            }
+          ],
+          "display-lg": [
+            "44px",
+            {
+              "lineHeight": "48px",
+              "letterSpacing": "-0.04em",
+              "fontWeight": "700"
+            }
+          ],
+          "headline-lg": [
+            "28px",
+            {
+              "lineHeight": "34px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "700"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "500"
+            }
+          ],
+          "display-lg-mobile": [
+            "34px",
+            {
+              "lineHeight": "38px",
+              "letterSpacing": "-0.03em",
+              "fontWeight": "700"
+            }
+          ],
+          "headline-sm": [
+            "18px",
+            {
+              "lineHeight": "24px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ],
+          "label-md": [
+            "11px",
+            {
+              "lineHeight": "14px",
+              "letterSpacing": "0.06em",
+              "fontWeight": "700"
+            }
+          ],
+          "label-sm": [
+            "10px",
+            {
+              "lineHeight": "12px",
+              "letterSpacing": "0.08em",
+              "fontWeight": "700"
+            }
+          ],
+          "label-lg": [
+            "13px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.04em",
+              "fontWeight": "700"
+            }
+          ],
+          "headline-md": [
+            "22px",
+            {
+              "lineHeight": "28px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ]
+        }
+      },
+    },
+  }
+</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style></head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary-container selection:text-on-primary-fixed"><header class="fixed top-0 w-full z-50 bg-[#10131a]/90 backdrop-blur-xl border-b border-[#272a31] pt-safe"><div class="h-16 px-gutter-mobile flex items-center justify-between"><div class="flex items-center gap-space-xs"><img alt="Kinetic Ledger Logo" class="h-8 w-auto object-contain rounded" src="https://lh3.googleusercontent.com/aida/AEtjO1UMpVV7Ci-QzzkFqa-dJDviogs7suZIu86fJ7qg-Pd9Qt4Puc9YQA_20xw7cmWMC4UQUyTmUcBNr0f8yoMEd2GPkKZNSW9XGWhHbD6IY7Qk35OyXUDKV0ZRw5CNUsEiBnkvGZLj4rFug1VBS6s7zmbo8KglQpaC1sHi5Qax7HQpMd7346W_KYs4agx--xXstftnd2oM4Go01_pt0tU9TWH5Btm3IuFiKHs2DfnWx2LEqpeBh_2VpL7QOCxX"/><div class="flex flex-col"><span class="font-label-lg text-label-lg tracking-wider text-white uppercase font-bold">Kinetic Ledger</span><span class="font-label-sm text-label-sm text-[#c3f400] tracking-widest uppercase font-semibold">Dashboard</span></div></div><div class="flex items-center gap-space-xs"><button aria-label="Notifications" class="w-11 h-11 flex items-center justify-center relative text-[#e1e2eb] hover:text-[#c3f400] transition-colors focus:outline-none"><span class="material-symbols-outlined text-[24px]">notifications</span><span class="absolute top-2.5 right-2.5 w-2 h-2 bg-[#c3f400] rounded-full ring-2 ring-[#10131a]"></span></button><div class="flex items-center justify-center p-0.5 rounded-full ring-1 ring-[#32353c]"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1VbUBRMEqLm_bInZA9NF8aVMc0lpCnh3EESXumpdjkBoxMT0yswiHJGhDLvMkf7kKWjzS_L2CDHWTk_pFV2C9kX1yCtnNACN6Iev5uW5uoBenDkBs2TwM4SkoNow8C5Yp4EdNBC_VvypMyO2Wx7_DXeF6_YruDvFlUOJ0uoPiwjK36JoOCtcEKmq9PVZNFQRqtLQR4TVj_eVjDa07UiGES0XzVtRjyV-_g9Z8z6UpXeODRCrNUOTu3bSO6B"/></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface px-gutter-mobile"><div class="flex flex-col w-full space-y-space-md">
+<!-- Interactive Toast Notification -->
+<div class="fixed top-20 left-4 right-4 z-50 transform -translate-y-28 opacity-0 transition-all duration-300 pointer-events-none bg-[#272a31] border border-[#444933] text-white p-space-sm rounded-xl shadow-2xl flex items-center justify-between" id="action-toast">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[#c3f400]" id="toast-icon">check_circle</span>
+<span class="font-body-md text-body-md font-semibold text-white" id="toast-message">Action processed</span>
+</div>
+<span class="font-label-sm text-label-sm tracking-wider uppercase text-[#c4c9ac]">Now</span>
+</div>
+<!-- Hero Net Worth Statement Card (Neo-Brutalist Dark) -->
+<section class="w-full bg-[#151922] border border-[#272c3b] text-on-surface rounded-xl p-space-md shadow-lg relative overflow-hidden">
+<!-- Decorative geometric watermark -->
+<div class="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-[#c3f400]/5 pointer-events-none flex items-center justify-center">
+<span class="material-symbols-outlined text-[#c3f400]/10 text-[96px]">account_balance</span>
+</div>
+<div class="flex items-center justify-between relative z-10">
+<div class="flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[#c3f400] text-[20px]" style="font-variation-settings: 'FILL' 1;">wallet</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-[#c4c9ac] font-bold">Total Net Worth</span>
+</div>
+<div class="inline-flex items-center gap-1 bg-[#10131a] border border-[#c3f400]/30 text-[#c3f400] px-space-xs py-0.5 rounded-full shadow-sm">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span class="font-label-sm text-label-sm font-bold">+8.4% this mo</span>
+</div>
+</div>
+<div class="mt-space-xs relative z-10">
+<h1 class="font-display-lg-mobile text-display-lg-mobile tracking-tight text-[#c3f400] leading-none font-bold">
+        $48,920<span class="text-[#abd600]/70 text-headline-sm font-semibold">.40</span>
+</h1>
+<div class="mt-space-2xs flex items-center gap-space-2xs">
+<span class="font-body-sm text-body-sm font-semibold text-[#c3f400]">+$3,810.00 net gain</span>
+<span class="w-1 h-1 rounded-full bg-[#8e9379]"></span>
+<span class="font-body-sm text-body-sm text-[#8e9379]">Updated 2m ago</span>
+</div>
+</div>
+<!-- Quick Ledger Actions -->
+<div class="mt-space-md pt-space-sm border-t border-[#272c3b] -mx-space-md px-space-md flex items-center justify-between gap-space-2xs overflow-x-auto no-scrollbar">
+<button class="flex-1 min-w-[72px] bg-[#1d2026] hover:bg-[#272a31] border border-[#32353c] text-white py-space-xs px-space-2xs rounded-lg shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center gap-1" onclick="triggerFeedback('Income logged: +$500.00 to Main Checking', 'payments')">
+<span class="material-symbols-outlined text-[#c3f400] text-[20px]">add_circle</span>
+<span class="font-label-sm text-label-sm text-[#e1e2eb] whitespace-nowrap">Add Income</span>
+</button>
+<button class="flex-1 min-w-[72px] bg-[#1d2026] hover:bg-[#272a31] border border-[#32353c] text-white py-space-xs px-space-2xs rounded-lg shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center gap-1" onclick="triggerFeedback('Split tab generated for squad', 'call_split')">
+<span class="material-symbols-outlined text-[#b8c4ff] text-[20px]">call_split</span>
+<span class="font-label-sm text-label-sm text-[#e1e2eb] whitespace-nowrap">Quick Split</span>
+</button>
+<button class="flex-1 min-w-[72px] bg-[#1d2026] hover:bg-[#272a31] border border-[#32353c] text-white py-space-xs px-space-2xs rounded-lg shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center gap-1" onclick="triggerFeedback('Auto-routed $150 to 4.8% Vault', 'lock')">
+<span class="material-symbols-outlined text-[#e1e2eb] text-[20px]">lock</span>
+<span class="font-label-sm text-label-sm text-[#e1e2eb] whitespace-nowrap">To Vault</span>
+</button>
+<button class="flex-1 min-w-[72px] bg-[#1d2026] hover:bg-[#272a31] border border-[#32353c] text-white py-space-xs px-space-2xs rounded-lg shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center gap-1" onclick="triggerFeedback('Q2 Ledger report exported to CSV', 'file_download')">
+<span class="material-symbols-outlined text-[#e1e2eb] text-[20px]">file_download</span>
+<span class="font-label-sm text-label-sm text-[#e1e2eb] whitespace-nowrap">Export</span>
+</button>
+</div>
+</section>
+<!-- Interactive Cash Flow Chart Module (Dark Slate) -->
+<section class="w-full bg-[#191c22] border border-[#272a31] rounded-xl p-space-md shadow-lg flex flex-col space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-[#c4c9ac]">Cash Flow Engine</span>
+<span class="font-headline-sm text-headline-sm text-white font-bold">Velocity Dynamics</span>
+</div>
+<div class="flex items-center gap-1 bg-[#10131a] p-0.5 rounded-lg border border-[#272a31]" id="timeframe-selector">
+<button class="px-2 py-1 rounded font-label-sm text-label-sm text-[#c4c9ac] transition-colors" onclick="switchTimeframe(this, '7D')">7D</button>
+<button class="px-2 py-1 rounded font-label-sm text-label-sm bg-[#c3f400] text-[#161e00] font-bold shadow-sm transition-colors" onclick="switchTimeframe(this, '30D')">30D</button>
+<button class="px-2 py-1 rounded font-label-sm text-label-sm text-[#c4c9ac] transition-colors" onclick="switchTimeframe(this, '90D')">90D</button>
+<button class="px-2 py-1 rounded font-label-sm text-label-sm text-[#c4c9ac] transition-colors" onclick="switchTimeframe(this, 'YTD')">YTD</button>
+</div>
+</div>
+<!-- Income vs Expenses Metric Badges -->
+<div class="grid grid-cols-2 gap-space-xs">
+<div class="bg-[#10131a] border border-[#272a31] p-space-xs rounded-lg flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-[#c4c9ac] uppercase font-bold">Inflow</span>
+<span class="font-headline-sm text-headline-sm font-bold text-[#388bfd]" id="metric-inflow">$8,450.00</span>
+</div>
+<div class="w-7 h-7 rounded-full bg-[#0347e4]/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-[#388bfd] text-[18px]">south_west</span>
+</div>
+</div>
+<div class="bg-[#10131a] border border-[#272a31] p-space-xs rounded-lg flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-[#c4c9ac] uppercase font-bold">Outflow</span>
+<span class="font-headline-sm text-headline-sm font-bold text-[#ff7b72]" id="metric-outflow">$4,639.60</span>
+</div>
+<div class="w-7 h-7 rounded-full bg-[#ff7b72]/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-[#ff7b72] text-[18px]">north_east</span>
+</div>
+</div>
+</div>
+<!-- Chart Canvas Container with Neo-Brutalist Wave & Hover Tooltip -->
+<div class="relative w-full pt-2 pb-1">
+<!-- Tooltip Pill Overlay -->
+<div class="absolute -top-1 left-[54%] transform -translate-x-1/2 z-20 bg-[#272a31] border border-[#c3f400]/50 text-white px-space-xs py-1 rounded-full shadow-lg flex items-center gap-1.5 pointer-events-none transition-all duration-200" id="chart-tooltip">
+<span class="w-2 h-2 rounded-full bg-[#ff7b72]"></span>
+<span class="font-label-sm text-label-sm tracking-wide font-bold text-white" id="tooltip-content">$240.50 Spent • Fri 14th</span>
+</div>
+<svg class="w-full h-36 overflow-visible" fill="none" viewbox="0 0 340 140" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<lineargradient gradientunits="userSpaceOnUse" id="incomeFill" x1="0" x2="0" y1="0" y2="140">
+<stop offset="0%" stop-color="#388bfd" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#388bfd" stop-opacity="0.0"></stop>
+</lineargradient>
+<lineargradient gradientunits="userSpaceOnUse" id="expenseFill" x1="0" x2="0" y1="0" y2="140">
+<stop offset="0%" stop-color="#ff7b72" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#ff7b72" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<!-- Subtle horizontal chart grid tracks -->
+<line opacity="0.35" stroke="#32353c" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="340" y1="20" y2="20"></line>
+<line opacity="0.35" stroke="#32353c" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="340" y1="70" y2="70"></line>
+<line opacity="0.35" stroke="#32353c" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="340" y1="120" y2="120"></line>
+<!-- Income Wave Area & Path -->
+<path d="M0,110 C45,100 80,45 130,40 C180,35 220,70 270,30 C300,10 320,15 340,10 L340,140 L0,140 Z" fill="url(#incomeFill)" id="income-area"></path>
+<path d="M0,110 C45,100 80,45 130,40 C180,35 220,70 270,30 C300,10 320,15 340,10" id="income-line" stroke="#388bfd" stroke-linecap="round" stroke-width="3"></path>
+<!-- Expense Wave Area & Path -->
+<path d="M0,125 C50,120 90,85 140,88 C190,92 225,50 270,75 C310,95 325,80 340,82 L340,140 L0,140 Z" fill="url(#expenseFill)" id="expense-area"></path>
+<path d="M0,125 C50,120 90,85 140,88 C190,92 225,50 270,75 C310,95 325,80 340,82" id="expense-line" stroke="#ff7b72" stroke-dasharray="4 2" stroke-linecap="round" stroke-width="2.5"></path>
+<!-- Interactive Pivot Datapoints -->
+<g class="cursor-pointer" onclick="updateChartPoint('$480.00 Inflow • Day 8', '38%', 130, 40)">
+<circle cx="130" cy="40" fill="#388bfd" r="5" stroke="#10131a" stroke-width="2"></circle>
+</g>
+<g class="cursor-pointer" onclick="updateChartPoint('$240.50 Spent • Fri 14th', '54%', 190, 92)">
+<circle cx="190" cy="92" fill="#ff7b72" r="6" stroke="#10131a" stroke-width="2.5"></circle>
+<circle cx="190" cy="92" fill="#ff7b72" fill-opacity="0.3" r="11"></circle>
+</g>
+<g class="cursor-pointer" onclick="updateChartPoint('$1,420 Paycheck • Day 24', '79%', 270, 30)">
+<circle cx="270" cy="30" fill="#388bfd" r="5" stroke="#10131a" stroke-width="2"></circle>
+</g>
+</svg>
+</div>
+<!-- Graph footer legend and date nodes -->
+<div class="flex items-center justify-between text-[#8e9379] pt-space-2xs">
+<span class="font-label-sm text-label-sm">May 01</span>
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-[#e1e2eb]">
+<span class="w-2 h-2 rounded-full bg-[#388bfd]"></span>In
+</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-[#e1e2eb]">
+<span class="w-2 h-2 rounded-full bg-[#ff7b72]"></span>Out
+</span>
+</div>
+<span class="font-label-sm text-label-sm">May 30</span>
+</div>
+</section>
+<!-- Quick Liquidity & Accounts Shelf -->
+<section class="w-full flex flex-col space-y-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[#c3f400] text-[20px]">account_tree</span>
+<h2 class="font-headline-sm text-headline-sm font-bold text-white">Allocated Liquidity</h2>
+</div>
+<button class="font-label-sm text-label-sm text-[#c3f400] uppercase font-bold tracking-wider hover:underline" onclick="triggerFeedback('Navigating to linked institutions', 'sync_alt')">Manage (3)</button>
+</div>
+<!-- Horizontal Swipe Deck for Core Accounts -->
+<div class="flex items-center gap-space-xs overflow-x-auto no-scrollbar py-1">
+<!-- Card 1: Checking -->
+<div class="min-w-[210px] bg-[#191c22] border border-[#272a31] p-space-sm rounded-xl shadow-md flex flex-col justify-between space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="w-8 h-8 rounded-lg bg-[#272a31] flex items-center justify-center">
+<span class="material-symbols-outlined text-[#c3f400] text-[18px]">credit_card</span>
+</div>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-[#272a31] text-[#c4c9ac] font-bold">Primary</span>
+</div>
+<div>
+<span class="font-body-sm text-body-sm text-[#c4c9ac] block">Main Checking (••8102)</span>
+<span class="font-headline-sm text-headline-sm text-white font-bold block mt-0.5">$4,210.15</span>
+</div>
+<div class="flex items-center justify-between pt-1">
+<span class="font-label-sm text-label-sm text-[#b8c4ff] font-bold">Active Float</span>
+<span class="material-symbols-outlined text-[#8e9379] text-[16px]">arrow_forward</span>
+</div>
+</div>
+<!-- Card 2: High Yield Vault -->
+<div class="min-w-[220px] bg-[#0347e4] border border-[#388bfd] text-white p-space-sm rounded-xl shadow-md flex flex-col justify-between space-y-space-sm relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 w-16 h-16 rounded-full bg-white/10 pointer-events-none"></div>
+<div class="flex items-center justify-between relative z-10">
+<div class="w-8 h-8 rounded-lg bg-black/20 text-[#c3f400] flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">savings</span>
+</div>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-[#c3f400] text-[#161e00] font-bold">4.8% APY</span>
+</div>
+<div class="relative z-10">
+<span class="font-body-sm text-body-sm text-[#dde1ff] block">Emergency Vault</span>
+<span class="font-headline-sm text-headline-sm text-white font-bold block mt-0.5">$28,500.00</span>
+</div>
+<div class="flex items-center justify-between pt-1 relative z-10">
+<span class="font-label-sm text-label-sm text-[#c3f400] font-bold">+$114.00 Earned/mo</span>
+<span class="material-symbols-outlined text-[#dde1ff] text-[16px]">lock_clock</span>
+</div>
+</div>
+<!-- Card 3: Brokerage -->
+<div class="min-w-[210px] bg-[#191c22] border border-[#272a31] p-space-sm rounded-xl shadow-md flex flex-col justify-between space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="w-8 h-8 rounded-lg bg-[#272a31] flex items-center justify-center">
+<span class="material-symbols-outlined text-[#b8c4ff] text-[18px]">query_stats</span>
+</div>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-[#272a31] text-[#c4c9ac] font-bold">Equities</span>
+</div>
+<div>
+<span class="font-body-sm text-body-sm text-[#c4c9ac] block">Alpha Index Portfolio</span>
+<span class="font-headline-sm text-headline-sm text-white font-bold block mt-0.5">$16,210.25</span>
+</div>
+<div class="flex items-center justify-between pt-1">
+<span class="font-label-sm text-label-sm text-[#c3f400] font-bold">+14.2% YTD</span>
+<span class="material-symbols-outlined text-[#8e9379] text-[16px]">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Realtime Activity Stream -->
+<section class="w-full bg-[#191c22] border border-[#272a31] rounded-xl p-space-md shadow-lg flex flex-col space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[#c3f400] text-[20px]">receipt_long</span>
+<h2 class="font-headline-sm text-headline-sm font-bold text-white">Recent Stream</h2>
+</div>
+<button class="font-label-sm text-label-sm text-[#c3f400] uppercase font-bold tracking-wider hover:underline" onclick="triggerFeedback('Full ledger history opened', 'history')">
+        See All
+      </button>
+</div>
+<!-- Transaction List items -->
+<div class="flex flex-col space-y-space-xs">
+<!-- Item 1: Grocery -->
+<div class="p-space-xs rounded-lg bg-[#10131a] border border-[#272a31] flex items-center justify-between transition-transform active:scale-[0.99] cursor-pointer" onclick="triggerFeedback('Whole Foods: Receipt scanned &amp; categorized', 'shopping_basket')">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0 relative border border-[#272a31]">
+<img class="w-full h-full object-cover" data-alt="Close up clean shot of fresh vibrant green organic apples and groceries in paper packaging, sharp product studio photography, soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDY8W5wXFe5ahnz31q03ASNbX7_yfkz1-c03oIxLK4NCI8u1dWVRW0fX7utCwHwaO80KCjfrDlvGyf5vP9hvvfz_tCOHugBecJRq_j4NA1Jb_VxIM193KM0-LYHRaRE-18MD-S6BeiiGqR52APJPOfqkX73YTI-bjAzldReuPyz_pH6P4DtLqmp0O0e2b9bPBGoeYhrRDDsI-9I9C9wO0fJd_Yttef66EdltO0NOYulFuF2gUQJERCkww"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-lg text-body-lg text-white font-semibold truncate">Whole Foods Market</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="font-label-sm text-label-sm px-1.5 py-0.2 bg-[#272a31] text-[#c4c9ac] rounded font-semibold">Groceries</span>
+<span class="font-body-sm text-body-sm text-[#8e9379] truncate">Today, 2:15 PM</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end flex-shrink-0 pl-2">
+<span class="font-headline-sm text-headline-sm font-bold text-[#ff7b72]">-$84.20</span>
+<span class="font-label-sm text-label-sm text-[#8e9379]">Checking</span>
+</div>
+</div>
+<!-- Item 2: Stripe Inflow -->
+<div class="p-space-xs rounded-lg bg-[#10131a] border border-[#272a31] flex items-center justify-between transition-transform active:scale-[0.99] cursor-pointer" onclick="triggerFeedback('Stripe payout: Invoice #KL-9402 settled', 'check_circle')">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-10 h-10 rounded-lg bg-[#0347e4]/20 border border-[#0347e4]/40 text-[#388bfd] flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">payments</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-lg text-body-lg text-white font-semibold truncate">Stripe Payout Client</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="font-label-sm text-label-sm px-1.5 py-0.2 bg-[#c3f400]/20 text-[#c3f400] border border-[#c3f400]/30 rounded font-bold">Income</span>
+<span class="font-body-sm text-body-sm text-[#8e9379] truncate">Yesterday, 9:30 AM</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end flex-shrink-0 pl-2">
+<span class="font-headline-sm text-headline-sm font-bold text-[#c3f400]">+$2,400.00</span>
+<span class="font-label-sm text-label-sm text-[#b8c4ff] font-bold">Settled</span>
+</div>
+</div>
+<!-- Item 3: Equinox -->
+<div class="p-space-xs rounded-lg bg-[#10131a] border border-[#272a31] flex items-center justify-between transition-transform active:scale-[0.99] cursor-pointer" onclick="triggerFeedback('Equinox Fitness: Monthly membership charge', 'fitness_center')">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0 relative border border-[#272a31]">
+<img class="w-full h-full object-cover" data-alt="High-end sleek boutique fitness gym with dark matte black weights and modern architectural ambient light, editorial fitness photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK_G7xGtnCAO9orNEd47glFyVuSqQ0kihlm1hbycVejCTXgOVRv8nrNM4vrcQYi5ZmGsfuO6GBjpZq3b6xZ6IvsX9I8rLkUipFGEN7snqhheohADzknZSa_eW4_Z6z3cCx7r2JvycwImNub2esJ1ubUg4kg5KJq3LNttM1nT-atdD8LEfSW7veWxj5AP4CcYGU7lkK6BOrjNd2HmUmzMtCUHun3ciSCacVr0KAcBSWQD3_H03C4Hkprw"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-lg text-body-lg text-white font-semibold truncate">Equinox Fitness</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="font-label-sm text-label-sm px-1.5 py-0.2 bg-[#272a31] text-[#c4c9ac] rounded font-semibold">Health</span>
+<span class="font-body-sm text-body-sm text-[#8e9379] truncate">May 26, 7:00 AM</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end flex-shrink-0 pl-2">
+<span class="font-headline-sm text-headline-sm font-bold text-[#ff7b72]">-$120.00</span>
+<span class="font-label-sm text-label-sm text-[#8e9379]">Checking</span>
+</div>
+</div>
+<!-- Item 4: Spotify -->
+<div class="p-space-xs rounded-lg bg-[#10131a] border border-[#272a31] flex items-center justify-between transition-transform active:scale-[0.99] cursor-pointer" onclick="triggerFeedback('Spotify Family: Subscription auto-renewed', 'queue_music')">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0 relative border border-[#272a31]">
+<img class="w-full h-full object-cover" data-alt="Modern studio headphones resting on minimalist timber workspace table next to a smartphone screen glowing green, moody editorial style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLw_JV6pVcPqDILx7DgHUzzq4x1ctIdaYq8VFJAPw2iE1E30cidihV8VaYND28kKeQ8DwdnbtJ_KbtxclNr6BNahAMxRm0FSiGLYLGuvX6IxS4gwsfjhaCtYHz_2WadBbCsoeNe22Zgx2cpR1QCX4RvbjDevuWUzbWEFTz97tcLC3EfdV1bPDnMlva2NRIafpUFQAUhVU3-Rgee4P3Q6keVXpqKksp-tA-FJvvosnj7Y-A6URVhGo_3g"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-lg text-body-lg text-white font-semibold truncate">Spotify Family</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="font-label-sm text-label-sm px-1.5 py-0.2 bg-[#272a31] text-[#c4c9ac] rounded font-semibold">Subscriptions</span>
+<span class="font-body-sm text-body-sm text-[#8e9379] truncate">May 24, 11:12 PM</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end flex-shrink-0 pl-2">
+<span class="font-headline-sm text-headline-sm font-bold text-[#ff7b72]">-$16.99</span>
+<span class="font-label-sm text-label-sm text-[#8e9379]">Rebated 2%</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Budget Run-rate Utility Pulse Card -->
+<section class="w-full bg-[#191c22] border border-[#272a31] p-space-md rounded-xl shadow-md flex flex-col space-y-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[#c3f400] text-[18px]">speed</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-[#c4c9ac] font-bold">Monthly Spend Burn</span>
+</div>
+<span class="font-label-sm text-label-sm text-[#c3f400] font-bold">On Pace (54.9%)</span>
+</div>
+<!-- Segmented Progression Indicator -->
+<div class="w-full h-3 bg-[#10131a] rounded-full overflow-hidden flex border border-[#272a31]">
+<div class="h-full bg-[#388bfd]" style="width: 38%;"></div>
+<div class="h-full bg-[#c3f400]" style="width: 17%;"></div>
+<div class="h-full bg-[#272a31]" style="width: 45%;"></div>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm text-[#8e9379]">
+<span>Spent: <strong class="text-white">$4,639.60</strong></span>
+<span>Remaining: <strong class="text-[#c3f400]">$3,810.40</strong></span>
+</div>
+</section>
+</div>
+<script>
+  // Dynamic Chart Pill Point Update
+  function updateChartPoint(label, leftPercent, cx, cy) {
+    const tooltip = document.getElementById('chart-tooltip');
+    const content = document.getElementById('tooltip-content');
+    if (!tooltip || !content) return;
+
+    tooltip.style.left = leftPercent;
+    content.innerText = label;
+    
+    // Quick micro-pulse animation
+    tooltip.classList.add('scale-110');
+    setTimeout(() => {
+      tooltip.classList.remove('scale-110');
+    }, 150);
+  }
+
+  // Interactive Timeframe Switcher
+  function switchTimeframe(btn, span) {
+    const buttons = document.querySelectorAll('#timeframe-selector button');
+    buttons.forEach(b => {
+      b.className = "px-2 py-1 rounded font-label-sm text-label-sm text-[#c4c9ac] transition-colors";
+    });
+    btn.className = "px-2 py-1 rounded font-label-sm text-label-sm bg-[#c3f400] text-[#161e00] font-bold shadow-sm transition-colors";
+
+    const inflow = document.getElementById('metric-inflow');
+    const outflow = document.getElementById('metric-outflow');
+    const tooltip = document.getElementById('tooltip-content');
+
+    if (span === '7D') {
+      if (inflow) inflow.innerText = '$2,150.00';
+      if (outflow) outflow.innerText = '$980.40';
+      if (tooltip) tooltip.innerText = '$140.20 Spent • Wed 3rd';
+    } else if (span === '30D') {
+      if (inflow) inflow.innerText = '$8,450.00';
+      if (outflow) outflow.innerText = '$4,639.60';
+      if (tooltip) tooltip.innerText = '$240.50 Spent • Fri 14th';
+    } else if (span === '90D') {
+      if (inflow) inflow.innerText = '$26,900.00';
+      if (outflow) outflow.innerText = '$14,210.00';
+      if (tooltip) tooltip.innerText = '$1,120.00 Tax • Apr 15th';
+    } else {
+      if (inflow) inflow.innerText = '$54,120.00';
+      if (outflow) outflow.innerText = '$29,480.00';
+      if (tooltip) tooltip.innerText = '$3,400 Bonus • Jan 20th';
+    }
+  }
+
+  // Visual Toast Feedback for Micro-interactions
+  let toastTimer;
+  function triggerFeedback(message, iconName) {
+    const toast = document.getElementById('action-toast');
+    const msgEl = document.getElementById('toast-message');
+    const iconEl = document.getElementById('toast-icon');
+
+    if (!toast || !msgEl || !iconEl) return;
+
+    msgEl.innerText = message;
+    iconEl.innerText = iconName || 'check_circle';
+
+    toast.classList.remove('-translate-y-28', 'opacity-0');
+    toast.classList.add('translate-y-0', 'opacity-100');
+
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toast.classList.add('-translate-y-28', 'opacity-0');
+      toast.classList.remove('translate-y-0', 'opacity-100');
+    }, 2400);
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-[#10131a]/95 backdrop-blur-xl border-t border-[#272a31]" data-active-classes="text-[#c3f400] font-headline-sm font-bold scale-[1.02]"><div class="h-20 px-space-2xs flex items-center justify-around"><a aria-current="page" class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] py-1 px-2 transition-transform text-[#c3f400] font-headline-sm font-bold scale-[1.02]" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[22px]">space_dashboard</span><span class="font-label-sm text-label-sm tracking-tight mt-1">Dash</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] py-1 px-2 text-[#8e9379] hover:text-white transition-transform" data-path="budgets" href="#"><span class="material-symbols-outlined text-[22px]">account_balance_wallet</span><span class="font-label-sm text-label-sm tracking-tight mt-1">Budgets</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] py-1 px-2 text-[#8e9379] hover:text-[#c3f400] transition-transform" data-path="log" href="#"><span class="material-symbols-outlined text-[24px] text-[#c3f400]">add_box</span><span class="font-label-sm text-label-sm tracking-tight mt-1">Log</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] py-1 px-2 text-[#8e9379] hover:text-white transition-transform" data-path="analytics" href="#"><span class="material-symbols-outlined text-[22px]">insights</span><span class="font-label-sm text-label-sm tracking-tight mt-1">Analytics</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] py-1 px-2 text-[#8e9379] hover:text-white transition-transform" data-path="accounts" href="#"><span class="material-symbols-outlined text-[22px]">credit_card</span><span class="font-label-sm text-label-sm tracking-tight mt-1">Accounts</span></a></div></nav></body></html>

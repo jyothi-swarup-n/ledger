@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;font-family:'Space Grotesk',sans-serif;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "primary-container": "#c3f400",
+        "on-secondary-fixed": "#001453",
+        "on-primary-fixed-variant": "#3c4d00",
+        "tertiary-fixed-dim": "#ffb3b2",
+        "on-surface-variant": "#c4c9ac",
+        "surface-container-high": "#272a31",
+        "primary-fixed": "#c3f400",
+        "primary-fixed-dim": "#abd600",
+        "surface-dim": "#10131a",
+        "surface-container-lowest": "#0b0e14",
+        "secondary-fixed": "#dde1ff",
+        "on-tertiary": "#680013",
+        "surface": "#10131a",
+        "on-error-container": "#ffdad6",
+        "on-tertiary-fixed-variant": "#920020",
+        "outline": "#8e9379",
+        "on-background": "#e1e2eb",
+        "on-secondary-fixed-variant": "#0037b9",
+        "on-secondary": "#002584",
+        "surface-tint": "#abd600",
+        "surface-variant": "#32353c",
+        "secondary-fixed-dim": "#b8c4ff",
+        "on-error": "#690005",
+        "primary": "#ffffff",
+        "inverse-primary": "#506600",
+        "inverse-on-surface": "#2e3037",
+        "error": "#ffb4ab",
+        "surface-container-highest": "#32353c",
+        "on-primary": "#283500",
+        "outline-variant": "#444933",
+        "surface-container-low": "#191c22",
+        "background": "#10131a",
+        "secondary": "#b8c4ff",
+        "secondary-container": "#0347e4",
+        "on-primary-container": "#556d00",
+        "on-tertiary-container": "#c51833",
+        "surface-bright": "#363940",
+        "on-tertiary-fixed": "#410008",
+        "inverse-surface": "#e1e2eb",
+        "on-primary-fixed": "#161e00",
+        "on-secondary-container": "#c6cfff",
+        "on-surface": "#e1e2eb",
+        "surface-container": "#1d2026",
+        "error-container": "#93000a",
+        "tertiary-container": "#ffdad9",
+        "tertiary": "#ffffff",
+        "tertiary-fixed": "#ffdad9"
+      },
+      borderRadius: {
+        "DEFAULT": "0.125rem",
+        "lg": "0.25rem",
+        "xl": "0.5rem",
+        "full": "0.75rem"
+      },
+      spacing: {
+        "space-sm": "0.75rem",
+        "margin-mobile": "1rem",
+        "space-xl": "1.5rem",
+        "space-lg": "1.25rem",
+        "margin-tablet": "1.5rem",
+        "space-2xl": "2rem",
+        "space-2xs": "0.25rem",
+        "space-3xl": "3rem",
+        "space-xs": "0.5rem",
+        "gutter-tablet": "1rem",
+        "space-md": "1rem",
+        "gutter-mobile": "0.75rem"
+      },
+      fontFamily: {
+        "body-sm": ["Space Grotesk"],
+        "display-lg": ["Space Grotesk"],
+        "headline-lg": ["Space Grotesk"],
+        "body-lg": ["Space Grotesk"],
+        "display-lg-mobile": ["Space Grotesk"],
+        "headline-sm": ["Space Grotesk"],
+        "body-md": ["Space Grotesk"],
+        "label-md": ["Space Grotesk"],
+        "label-sm": ["Space Grotesk"],
+        "label-lg": ["Space Grotesk"],
+        "headline-md": ["Space Grotesk"]
+      },
+      fontSize: {
+        "body-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.01em", fontWeight: "400" }],
+        "display-lg": ["44px", { lineHeight: "48px", letterSpacing: "-0.04em", fontWeight: "700" }],
+        "headline-lg": ["28px", { lineHeight: "34px", letterSpacing: "-0.02em", fontWeight: "700" }],
+        "body-lg": ["16px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "500" }],
+        "display-lg-mobile": ["34px", { lineHeight: "38px", letterSpacing: "-0.03em", fontWeight: "700" }],
+        "headline-sm": ["18px", { lineHeight: "24px", letterSpacing: "0em", fontWeight: "600" }],
+        "body-md": ["14px", { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" }],
+        "label-md": ["11px", { lineHeight: "14px", letterSpacing: "0.06em", fontWeight: "700" }],
+        "label-sm": ["10px", { lineHeight: "12px", letterSpacing: "0.08em", fontWeight: "700" }],
+        "label-lg": ["13px", { lineHeight: "16px", letterSpacing: "0.04em", fontWeight: "700" }],
+        "headline-md": ["22px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }]
+      }
+    }
+  }
+};</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+      background-color: #10131a;
+    }
+  </style>
+</head><body class="bg-[#10131a] font-body-md text-body-md text-[#e1e2eb] flex flex-col min-h-screen selection:bg-[#c3f400] selection:text-[#10131a]"><header class="fixed top-0 w-full z-50 bg-[#10131a]/90 backdrop-blur-xl border-b border-[#2a334a] shadow-[0_4px_12px_rgba(0,0,0,0.5)] pt-safe"><div class="h-16 px-gutter-mobile flex items-center justify-between"><div class="flex items-center gap-space-xs"><img alt="Kinetic Ledger Logo" class="h-8 w-auto object-contain rounded-sm" src="https://lh3.googleusercontent.com/aida/AEtjO1UMpVV7Ci-QzzkFqa-dJDviogs7suZIu86fJ7qg-Pd9Qt4Puc9YQA_20xw7cmWMC4UQUyTmUcBNr0f8yoMEd2GPkKZNSW9XGWhHbD6IY7Qk35OyXUDKV0ZRw5CNUsEiBnkvGZLj4rFug1VBS6s7zmbo8KglQpaC1sHi5Qax7HQpMd7346W_KYs4agx--xXstftnd2oM4Go01_pt0tU9TWH5Btm3IuFiKHs2DfnWx2LEqpeBh_2VpL7QOCxX"/><div class="flex flex-col"><span class="font-label-lg text-label-lg tracking-wider text-white uppercase font-bold">Kinetic Ledger</span><span class="font-label-sm text-label-sm text-[#c3f400] tracking-widest uppercase font-bold">Budgets</span></div></div><div class="flex items-center gap-space-xs"><button aria-label="Notifications" class="w-11 h-11 flex items-center justify-center relative text-[#e1e2eb] hover:text-[#c3f400] transition-colors focus:outline-none"><span class="material-symbols-outlined text-[24px]">notifications</span><span class="absolute top-2 right-2 w-2.5 h-2.5 bg-[#c3f400] rounded-full ring-2 ring-[#10131a]"></span></button><div class="flex items-center justify-center p-0.5 rounded-full border border-[#2a334a]"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1VbUBRMEqLm_bInZA9NF8aVMc0lpCnh3EESXumpdjkBoxMT0yswiHJGhDLvMkf7kKWjzS_L2CDHWTk_pFV2C9kX1yCtnNACN6Iev5uW5uoBenDkBs2TwM4SkoNow8C5Yp4EdNBC_VvypMyO2Wx7_DXeF6_YruDvFlUOJ0uoPiwjK36JoOCtcEKmq9PVZNFQRqtLQR4TVj_eVjDa07UiGES0XzVtRjyV-_g9Z8z6UpXeODRCrNUOTu3bSO6B"/></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-[#10131a] px-gutter-mobile"><div class="flex flex-col w-full pb-6 space-y-space-md">
+<!-- Monthly Ceiling & Pace Monitor -->
+<div class="bg-[#141824] rounded-lg p-space-md border border-[#2a334a] shadow-[4px_4px_0px_#000000] relative overflow-hidden">
+<div class="flex items-center justify-between mb-space-xs">
+<div class="flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[#3b82f6] text-[20px]" style="font-variation-settings: 'FILL' 1;">speed</span>
+<span class="font-label-sm text-label-sm text-[#c4c9ac] uppercase tracking-wider font-bold">Burn Rate Engine</span>
+</div>
+<span class="font-label-sm text-label-sm px-2.5 py-0.5 bg-[#1f2638] border border-[#2a334a] text-white rounded-full font-bold">
+        11 Days Remaining
+      </span>
+</div>
+<div class="flex items-baseline justify-between mt-1">
+<div>
+<span class="font-display-lg-mobile text-display-lg-mobile text-white tracking-tight leading-none">$3,420</span>
+<span class="font-body-md text-body-md text-[#9ca3af] ml-1 font-semibold">/ $5,000</span>
+</div>
+<div class="text-right">
+<span class="font-headline-sm text-headline-sm text-[#3b82f6] font-bold">68%</span>
+<p class="font-body-sm text-body-sm text-[#9ca3af]">elapsed</p>
+</div>
+</div>
+<!-- Progress Track with Neo-Brutalist Segmentation -->
+<div class="w-full h-4 bg-[#0b0e14] border border-[#2a334a] rounded-full overflow-hidden p-0.5 mt-space-sm flex relative">
+<div class="h-full bg-[#2563eb] rounded-full relative transition-all duration-500 ease-out shadow-[0_0_12px_rgba(37,99,235,0.6)]" style="width: 68%;">
+<div class="absolute inset-0 opacity-25 bg-[linear-gradient(45deg,#ffffff_25%,transparent_25%,transparent_50%,#ffffff_50%,#ffffff_75%,transparent_75%,transparent)] bg-[length:12px_12px]"></div>
+</div>
+</div>
+<!-- Daily Safe-to-Spend Pill & Burn Meta -->
+<div class="mt-space-md pt-space-xs flex flex-wrap items-center justify-between gap-space-xs bg-[#0b0e14] border border-[#2a334a] p-2.5 rounded-lg">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-[#c3f400] shadow-[0_0_8px_#c3f400] animate-pulse"></div>
+<span class="font-body-sm text-body-sm text-white font-semibold">Safe Daily Pace</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 bg-[#c3f400] text-[#10131a] rounded-full border border-black shadow-[2px_2px_0px_#000000]">
+<span class="material-symbols-outlined text-[16px] font-bold">bolt</span>
+<span class="font-label-sm text-label-sm tracking-normal font-bold">$143.60 / day</span>
+</div>
+</div>
+</div>
+<!-- Section Header & Filter Pills -->
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm text-white font-bold">Envelopes</h2>
+<span class="px-2.5 py-0.5 bg-[#2563eb] text-white rounded-full font-label-sm text-label-sm border border-[#3b82f6] font-bold">5 Active</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="px-3 py-1 text-[#10131a] bg-[#c3f400] border border-black rounded-full font-label-sm text-label-sm font-bold shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all">
+        All
+      </button>
+<button class="px-3 py-1 text-[#e1e2eb] bg-[#191c22] border border-[#2a334a] rounded-full font-label-sm text-label-sm font-bold hover:text-white transition-colors">
+        Alerts (1)
+      </button>
+</div>
+</div>
+<!-- Interactive Category Envelopes List -->
+<div class="space-y-space-sm" id="envelopesList">
+<!-- Envelope 1: Housing & Utilities -->
+<div class="bg-[#141824] rounded-lg p-space-md border border-[#2a334a] shadow-[3px_3px_0px_#000000] active:shadow-[1px_1px_0px_#000000] active:translate-x-[2px] active:translate-y-[2px] transition-all relative">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-10 h-10 rounded-lg bg-[#1e2538] border border-[#2a334a] flex items-center justify-center text-white shadow-[1.5px_1.5px_0px_#000000]">
+<span class="material-symbols-outlined text-[22px]">apartment</span>
+</div>
+<div>
+<h3 class="font-body-lg text-body-lg text-white font-bold">Housing &amp; Utilities</h3>
+<span class="font-body-sm text-body-sm text-[#9ca3af]">Essential • Fixed cycle</span>
+</div>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-[#191c22] border border-[#2a334a] text-[#c4c9ac] rounded-full font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#c3f400] shadow-[0_0_6px_#c3f400]"></span>
+          On Track
+        </span>
+</div>
+<div class="mt-space-md flex items-baseline justify-between">
+<div>
+<span class="font-headline-md text-headline-md text-white font-bold">$1,650</span>
+<span class="font-body-sm text-body-sm text-[#9ca3af]">/ $1,700</span>
+</div>
+<div class="text-right font-label-lg text-label-lg font-bold text-white">
+          97%
+        </div>
+</div>
+<!-- Linear Gauge -->
+<div class="w-full h-2.5 bg-[#0b0e14] border border-[#2a334a] rounded-full overflow-hidden mt-1.5 p-0.5">
+<div class="h-full rounded-full bg-[#c3f400] transition-all duration-500 shadow-[0_0_8px_rgba(195,244,0,0.5)]" style="width: 97%;"></div>
+</div>
+<!-- Footnote: Rollover & Quick Adjust Action -->
+<div class="mt-space-sm pt-2 flex items-center justify-between text-[#9ca3af] border-t border-[#1f2638]">
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-[#b8c4ff] font-medium">
+<span class="material-symbols-outlined text-[16px]">sync_alt</span>
+          +$0 buffer rolled
+        </div>
+<button class="px-3 py-1 bg-[#1e2538] text-white border border-[#2a334a] rounded font-label-sm text-label-sm font-bold shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none hover:bg-[#272a31] hover:text-[#c3f400] transition-all" onclick="quickAdjust(this, 'Housing &amp; Utilities', 1700)">
+          Adjust
+        </button>
+</div>
+</div>
+<!-- Envelope 2: Dining & Social (Overbudget / Vivid Neon Coral-Red) -->
+<div class="bg-[#141824] rounded-lg p-space-md border border-[#ff4d6d]/40 shadow-[3px_3px_0px_#000000] relative overflow-hidden">
+<!-- Exclamation corner accent -->
+<div class="absolute -right-6 -top-6 w-14 h-14 bg-[#ff4d6d] transform rotate-45 flex items-end justify-center pb-1 shadow-md">
+<span class="material-symbols-outlined text-black text-[14px] font-bold">priority_high</span>
+</div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-10 h-10 rounded-lg bg-[#3a0a14] border border-[#ff4d6d] flex items-center justify-center text-[#ff4d6d] shadow-[1.5px_1.5px_0px_#000000]">
+<span class="material-symbols-outlined text-[22px]">restaurant</span>
+</div>
+<div>
+<h3 class="font-body-lg text-body-lg text-white font-bold">Dining &amp; Social</h3>
+<span class="font-body-sm text-body-sm text-[#9ca3af]">Discretionary</span>
+</div>
+</div>
+<div class="mr-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 bg-[#ff4d6d] text-black rounded-full font-label-sm text-label-sm font-bold border border-black shadow-[1.5px_1.5px_0px_#000000]">
+<span class="material-symbols-outlined text-[13px] font-bold">warning</span>
+            Over by $80
+          </span>
+</div>
+</div>
+<div class="mt-space-md flex items-baseline justify-between">
+<div>
+<span class="font-headline-md text-headline-md text-[#ff4d6d] font-bold">$680</span>
+<span class="font-body-sm text-body-sm text-[#9ca3af]">/ $600</span>
+</div>
+<div class="text-right font-label-lg text-label-lg font-bold text-[#ff4d6d]">
+          113%
+        </div>
+</div>
+<!-- Linear Gauge (Over 100%) -->
+<div class="w-full h-2.5 bg-[#0b0e14] border border-[#2a334a] rounded-full overflow-hidden mt-1.5 p-0.5">
+<div class="h-full rounded-full bg-[#ff4d6d] transition-all duration-500 shadow-[0_0_10px_rgba(255,77,109,0.7)]" style="width: 100%;"></div>
+</div>
+<div class="mt-space-sm pt-2 flex items-center justify-between text-[#9ca3af] border-t border-[#1f2638]">
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-[#ff4d6d] font-medium">
+<span class="material-symbols-outlined text-[16px]">trending_down</span>
+          Deficit pulled from Groceries
+        </div>
+<button class="px-3 py-1 bg-[#ff4d6d] text-black border border-black rounded font-label-sm text-label-sm font-bold shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none hover:bg-[#ff758f] transition-all" onclick="quickAdjust(this, 'Dining &amp; Social', 600)">
+          Top-Up
+        </button>
+</div>
+</div>
+<!-- Envelope 3: Groceries & Household -->
+<div class="bg-[#141824] rounded-lg p-space-md border border-[#2a334a] shadow-[3px_3px_0px_#000000] relative">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-10 h-10 rounded-lg bg-[#1d2d5a] border border-[#2563eb] flex items-center justify-center text-[#93c5fd] shadow-[1.5px_1.5px_0px_#000000]">
+<span class="material-symbols-outlined text-[22px]">shopping_cart</span>
+</div>
+<div>
+<h3 class="font-body-lg text-body-lg text-white font-bold">Groceries &amp; Household</h3>
+<span class="font-body-sm text-body-sm text-[#9ca3af]">Pantry &amp; supplies</span>
+</div>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 bg-[#1e293b] border border-[#3b82f6] text-[#93c5fd] rounded-full font-label-sm text-label-sm font-bold">
+          $280 Left
+        </span>
+</div>
+<div class="mt-space-md flex items-baseline justify-between">
+<div>
+<span class="font-headline-md text-headline-md text-white font-bold">$420</span>
+<span class="font-body-sm text-body-sm text-[#9ca3af]">/ $700</span>
+</div>
+<div class="text-right font-label-lg text-label-lg font-bold text-[#60a5fa]">
+          60%
+        </div>
+</div>
+<!-- Linear Gauge -->
+<div class="w-full h-2.5 bg-[#0b0e14] border border-[#2a334a] rounded-full overflow-hidden mt-1.5 p-0.5">
+<div class="h-full rounded-full bg-[#2563eb] transition-all duration-500 shadow-[0_0_8px_rgba(37,99,235,0.6)]" style="width: 60%;"></div>
+</div>
+<div class="mt-space-sm pt-2 flex items-center justify-between text-[#9ca3af] border-t border-[#1f2638]">
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-[#c3f400] font-medium">
+<span class="material-symbols-outlined text-[16px]">add_circle</span>
+          +$45 rollover from last month
+        </div>
+<button class="px-3 py-1 bg-[#1e2538] text-white border border-[#2a334a] rounded font-label-sm text-label-sm font-bold shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none hover:bg-[#272a31] hover:text-[#c3f400] transition-all" onclick="quickAdjust(this, 'Groceries &amp; Household', 700)">
+          Adjust
+        </button>
+</div>
+</div>
+<!-- Envelope 4: Tech, Gadgets & Gear -->
+<div class="bg-[#141824] rounded-lg p-space-md border border-[#2a334a] shadow-[3px_3px_0px_#000000] relative">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-10 h-10 rounded-lg bg-[#22350a] border border-[#c3f400] flex items-center justify-center text-[#c3f400] shadow-[1.5px_1.5px_0px_#000000]">
+<span class="material-symbols-outlined text-[22px]">devices</span>
+</div>
+<div>
+<h3 class="font-body-lg text-body-lg text-white font-bold">Tech, Gadgets &amp; Gear</h3>
+<span class="font-body-sm text-body-sm text-[#9ca3af]">Hardware &amp; subscriptions</span>
+</div>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 bg-[#c3f400] text-[#10131a] rounded-full font-label-sm text-label-sm font-bold border border-black shadow-[1.5px_1.5px_0px_#000000]">
+          $220 Left
+        </span>
+</div>
+<div class="mt-space-md flex items-baseline justify-between">
+<div>
+<span class="font-headline-md text-headline-md text-white font-bold">$280</span>
+<span class="font-body-sm text-body-sm text-[#9ca3af]">/ $500</span>
+</div>
+<div class="text-right font-label-lg text-label-lg font-bold text-[#c3f400]">
+          56%
+        </div>
+</div>
+<!-- Linear Gauge -->
+<div class="w-full h-2.5 bg-[#0b0e14] border border-[#2a334a] rounded-full overflow-hidden mt-1.5 p-0.5">
+<div class="h-full rounded-full bg-[#c3f400] transition-all duration-500 shadow-[0_0_8px_rgba(195,244,0,0.6)]" style="width: 56%;"></div>
+</div>
+<div class="mt-space-sm pt-2 flex items-center justify-between text-[#9ca3af] border-t border-[#1f2638]">
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-[#b8c4ff] font-medium">
+<span class="material-symbols-outlined text-[16px]">lock_clock</span>
+          Sinking fund active
+        </div>
+<button class="px-3 py-1 bg-[#1e2538] text-white border border-[#2a334a] rounded font-label-sm text-label-sm font-bold shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none hover:bg-[#272a31] hover:text-[#c3f400] transition-all" onclick="quickAdjust(this, 'Tech, Gadgets &amp; Gear', 500)">
+          Adjust
+        </button>
+</div>
+</div>
+<!-- Envelope 5: Personal Care & Wellness -->
+<div class="bg-[#141824] rounded-lg p-space-md border border-[#2a334a] shadow-[3px_3px_0px_#000000] relative">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-10 h-10 rounded-lg bg-[#271d4a] border border-[#818cf8] flex items-center justify-center text-[#c7d2fe] shadow-[1.5px_1.5px_0px_#000000]">
+<span class="material-symbols-outlined text-[22px]">spa</span>
+</div>
+<div>
+<h3 class="font-body-lg text-body-lg text-white font-bold">Personal Care &amp; Wellness</h3>
+<span class="font-body-sm text-body-sm text-[#9ca3af]">Gym &amp; health</span>
+</div>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 bg-[#191c22] border border-[#2a334a] text-white rounded-full font-label-sm text-label-sm font-bold">
+          $110 Left
+        </span>
+</div>
+<div class="mt-space-md flex items-baseline justify-between">
+<div>
+<span class="font-headline-md text-headline-md text-white font-bold">$190</span>
+<span class="font-body-sm text-body-sm text-[#9ca3af]">/ $300</span>
+</div>
+<div class="text-right font-label-lg text-label-lg font-bold text-white">
+          63%
+        </div>
+</div>
+<!-- Linear Gauge -->
+<div class="w-full h-2.5 bg-[#0b0e14] border border-[#2a334a] rounded-full overflow-hidden mt-1.5 p-0.5">
+<div class="h-full rounded-full bg-[#818cf8] transition-all duration-500 shadow-[0_0_8px_rgba(129,140,248,0.5)]" style="width: 63%;"></div>
+</div>
+<div class="mt-space-sm pt-2 flex items-center justify-between text-[#9ca3af] border-t border-[#1f2638]">
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-[#c3f400] font-medium">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+          +$18 rollover applied
+        </div>
+<button class="px-3 py-1 bg-[#1e2538] text-white border border-[#2a334a] rounded font-label-sm text-label-sm font-bold shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none hover:bg-[#272a31] hover:text-[#c3f400] transition-all" onclick="quickAdjust(this, 'Personal Care &amp; Wellness', 300)">
+          Adjust
+        </button>
+</div>
+</div>
+</div>
+<!-- Rollover Engine Micro Banner -->
+<div class="bg-[#141824] rounded-lg p-space-md flex items-center gap-space-sm border border-[#2a334a] shadow-[2px_2px_0px_#000000]">
+<div class="w-9 h-9 rounded-full bg-[#c3f400] border border-black flex items-center justify-center text-[#10131a] shrink-0 shadow-[1.5px_1.5px_0px_#000000]">
+<span class="material-symbols-outlined text-[20px] font-bold">auto_mode</span>
+</div>
+<div class="min-w-0 flex-1">
+<h4 class="font-headline-sm text-headline-sm text-white leading-tight font-bold">Kinetic Rollover Active</h4>
+<p class="font-body-sm text-body-sm text-[#9ca3af] truncate">Unspent funds automatically spill into next month's vaults.</p>
+</div>
+</div>
+<!-- Bottom Action Area: High-Impact Create New Envelope -->
+<div class="pt-2">
+<button class="w-full py-3.5 px-space-md bg-[#c3f400] text-[#10131a] font-headline-sm text-headline-sm font-bold rounded-lg border-2 border-black shadow-[4px_4px_0px_#000000] hover:shadow-[5px_5px_0px_#000000] hover:-translate-x-[1px] hover:-translate-y-[1px] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none transition-all flex items-center justify-center gap-2" id="createEnvelopeBtn">
+<span class="material-symbols-outlined text-[24px] font-bold">add_circle</span>
+<span>Create New Envelope</span>
+</button>
+</div>
+<!-- Quick Adjustment Micro-Sheet -->
+<div class="fixed inset-x-4 bottom-24 bg-[#141824] border-2 border-[#2a334a] rounded-xl p-space-md shadow-[8px_8px_0px_#000000] z-50 transition-all duration-200 translate-y-[120%] opacity-0 pointer-events-none" id="adjustModal">
+<div class="flex items-center justify-between pb-2 border-b border-[#2a334a]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#c3f400]">tune</span>
+<span class="font-headline-sm text-headline-sm font-bold text-white" id="modalEnvelopeName">Adjust Limit</span>
+</div>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-[#1e2538] border border-[#2a334a] text-white hover:text-[#c3f400]" onclick="closeAdjustModal()">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<div class="py-3">
+<label class="font-label-sm text-label-sm text-[#c4c9ac] uppercase tracking-wider block mb-1 font-bold">New Monthly Cap</label>
+<div class="relative flex items-center">
+<span class="absolute left-3 font-headline-md text-headline-md text-white">$</span>
+<input class="w-full pl-8 pr-3 py-2.5 bg-[#0b0e14] border border-[#2a334a] text-white rounded font-headline-md text-headline-md font-bold focus:outline-none focus:border-[#c3f400]" id="modalLimitInput" type="number" value="600"/>
+</div>
+</div>
+<div class="flex gap-2 pt-2">
+<button class="flex-1 py-2.5 bg-[#c3f400] text-[#10131a] font-label-lg text-label-lg font-bold border border-black rounded shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none" onclick="saveEnvelopeAdjustment()">
+        Save Envelope
+      </button>
+</div>
+</div>
+</div>
+<script>
+  let activeAdjustContext = null;
+
+  function quickAdjust(btn, name, currentVal) {
+    activeAdjustContext = { btn, name, currentVal };
+    const modal = document.getElementById('adjustModal');
+    document.getElementById('modalEnvelopeName').innerText = name;
+    document.getElementById('modalLimitInput').value = currentVal;
+    modal.classList.remove('translate-y-[120%]', 'opacity-0', 'pointer-events-none');
+    modal.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+  }
+
+  function closeAdjustModal() {
+    const modal = document.getElementById('adjustModal');
+    modal.classList.add('translate-y-[120%]', 'opacity-0', 'pointer-events-none');
+    modal.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+  }
+
+  function saveEnvelopeAdjustment() {
+    const newVal = document.getElementById('modalLimitInput').value;
+    if (activeAdjustContext && newVal) {
+      const btn = activeAdjustContext.btn;
+      const originalText = btn.innerText;
+      btn.innerText = 'Updated!';
+      btn.classList.add('bg-[#c3f400]', 'text-[#10131a]');
+      setTimeout(() => {
+        btn.innerText = originalText;
+        btn.classList.remove('bg-[#c3f400]', 'text-[#10131a]');
+      }, 1500);
+    }
+    closeAdjustModal();
+  }
+
+  document.getElementById('createEnvelopeBtn').addEventListener('click', () => {
+    quickAdjust(document.getElementById('createEnvelopeBtn'), 'New Category', 350);
+  });
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-[#10131a]/95 backdrop-blur-xl border-t border-[#2a334a] shadow-[0_-4px_16px_rgba(0,0,0,0.6)]"><div class="h-20 px-space-2xs flex items-center justify-around"><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] py-1 px-2 text-[#9ca3af] hover:text-white transition-transform" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[22px]">space_dashboard</span><span class="font-label-sm text-label-sm tracking-tight mt-1 font-bold">Dash</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] py-1 px-2 transition-transform text-[#c3f400] font-headline-sm font-bold scale-[1.05]" data-path="budgets" href="#"><span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span><span class="font-label-sm text-label-sm tracking-tight mt-1 font-bold">Budgets</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] py-1 px-2 text-[#9ca3af] hover:text-white transition-transform" data-path="log" href="#"><span class="material-symbols-outlined text-[24px] text-[#3b82f6]">add_box</span><span class="font-label-sm text-label-sm tracking-tight mt-1 font-bold">Log</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] py-1 px-2 text-[#9ca3af] hover:text-white transition-transform" data-path="analytics" href="#"><span class="material-symbols-outlined text-[22px]">insights</span><span class="font-label-sm text-label-sm tracking-tight mt-1 font-bold">Analytics</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] py-1 px-2 text-[#9ca3af] hover:text-white transition-transform" data-path="accounts" href="#"><span class="material-symbols-outlined text-[22px]">credit_card</span><span class="font-label-sm text-label-sm tracking-tight mt-1 font-bold">Accounts</span></a></div></nav></body></html>
