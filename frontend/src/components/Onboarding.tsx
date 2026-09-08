@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFinance } from '../context/FinanceContext';
 import { STARTER_CATEGORIES } from '../data/seedData';
 import {
@@ -73,6 +73,13 @@ export const Onboarding: React.FC<{ onComplete: () => void }> = ({ onComplete })
   } = useFinance();
 
   const [step, setStep] = useState<Step>('welcome');
+
+  // Always start each step from the top, never mid-scroll
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [step]);
 
   // Bank form state
   const [bankName, setBankName] = useState('');
