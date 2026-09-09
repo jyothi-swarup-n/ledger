@@ -6,11 +6,13 @@ coverage/
 *.log
 .env*
 !.env.example
+!backend/.env.example
 
 frontend/dev-dist/
 frontend/dist/
 frontend/node_modules/
 backend/__pycache__/
+backend/.venv/
 **/__pycache__/
 .pytest_cache/
 .env

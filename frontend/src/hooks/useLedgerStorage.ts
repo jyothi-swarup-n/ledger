@@ -53,10 +53,13 @@ export const useLedgerStorage = (userId: string | null) => {
       return { userId, data: { ...base.data, [key]: next } };
     });
   }, [userId]);
-  const setter = <K extends keyof LedgerData>(key: K): Dispatch<SetStateAction<LedgerData[K]>> => (value) => updateField(key, value);
+  const setBankAccounts = useCallback<Dispatch<SetStateAction<BankAccount[]>>>((value) => updateField('bankAccounts', value), [updateField]);
+  const setCreditCards = useCallback<Dispatch<SetStateAction<CreditCard[]>>>((value) => updateField('creditCards', value), [updateField]);
+  const setCategories = useCallback<Dispatch<SetStateAction<Category[]>>>((value) => updateField('categories', value), [updateField]);
+  const setTransactions = useCallback<Dispatch<SetStateAction<Transaction[]>>>((value) => updateField('transactions', value), [updateField]);
+  const setBudgetTargets = useCallback<Dispatch<SetStateAction<MonthBudgetTarget[]>>>((value) => updateField('budgetTargets', value), [updateField]);
   return {
     ...(snapshot.userId === userId ? snapshot.data : emptyLedger()),
-    setBankAccounts: setter('bankAccounts'), setCreditCards: setter('creditCards'),
-    setCategories: setter('categories'), setTransactions: setter('transactions'), setBudgetTargets: setter('budgetTargets'),
+    setBankAccounts, setCreditCards, setCategories, setTransactions, setBudgetTargets,
   };
 };

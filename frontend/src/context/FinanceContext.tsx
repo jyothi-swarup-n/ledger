@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { useLedgerStorage } from '../hooks/useLedgerStorage';
-import { clearTokens } from '../services/api';
+import { authApi, clearTokens, getRefreshToken, ledgerApi } from '../services/api';
 import {
   User,
   Transaction,
@@ -83,7 +83,7 @@ interface FinanceContextType {
   loginWithGoogle: (email: string, name?: string) => boolean;
   logoutUser: () => void;
   updateUserProfile: (name: string, passwordHash?: string) => void;
-  deleteUserAccount: () => void;
+  deleteUserAccount: () => Promise<void>;
   loadDemoData: () => void;
   resetUserData: () => void;
   
@@ -157,6 +157,9 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
     bankAccounts, setBankAccounts, creditCards, setCreditCards,
     categories, setCategories, transactions, setTransactions, budgetTargets, setBudgetTargets,
   } = useLedgerStorage(currentUser?.id ?? null);
+
+  const syncReadyRef = useRef(false);
+  const syncInFlightRef = useRef(false);
 
   // 4. Google Account Cloud Backup state & Profile Aliases
   const [isGoogleBackingUp, setIsGoogleBackingUp] = useState(false);
@@ -235,6 +238,90 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
   };
 
   const googleAccount = currentUser?.googleAccount || null;
+
+  const syncPayload = useCallback(() => ({
+    bank_accounts: bankAccounts.map((item) => ({ ...item })),
+    credit_cards: creditCards.map((item) => ({ ...item })),
+    categories: categories.map((item) => ({ ...item })),
+    transactions: transactions.map((item) => ({ ...item })),
+    budget_targets: budgetTargets.map((item) => ({ ...item })),
+  }), [bankAccounts, creditCards, categories, transactions, budgetTargets]);
+
+  const applyServerSnapshot = useCallback((snapshot: any) => {
+    const visible = (items: any[]) => items.filter((item) => !item.deleted).map(({ user_id, updated_at, deleted, ...item }) => item);
+    const serverCategories = visible(snapshot.categories || []).map((category: Category) => ({
+      ...category,
+      subcategories: (category.subcategories || []).map((subcategory: Subcategory) => ({
+        ...subcategory,
+        categoryId: category.id,
+      })),
+    }));
+    setBankAccounts(visible(snapshot.bank_accounts || []));
+    setCreditCards(visible(snapshot.credit_cards || []));
+    setCategories(serverCategories);
+    setTransactions(visible(snapshot.transactions || []));
+    setBudgetTargets(visible(snapshot.budget_targets || []));
+  }, [setBankAccounts, setCreditCards, setCategories, setTransactions, setBudgetTargets]);
+
+  const syncWithBackend = useCallback(async () => {
+    if (!currentUser || syncInFlightRef.current) return;
+    syncInFlightRef.current = true;
+    try {
+      const snapshot = await ledgerApi.pull();
+      const serverHasData = [
+        snapshot.bank_accounts,
+        snapshot.credit_cards,
+        snapshot.categories,
+        snapshot.transactions,
+        snapshot.budget_targets,
+      ].some((items) => items.length > 0);
+
+      if (snapshot.full && serverHasData) {
+        applyServerSnapshot(snapshot);
+      } else if (snapshot.full) {
+        const localHasData = Object.values(syncPayload()).some((items: any[]) => items.length > 0);
+        if (localHasData) await ledgerApi.push(syncPayload());
+      } else {
+        applyServerSnapshot(snapshot);
+      }
+      localStorage.setItem(`kinetic_ledger_last_sync_${currentUser.id}`, snapshot.server_time);
+      setVpsStatus((prev) => ({ ...prev, lastSynced: 'Just now', isOnline: true }));
+    } catch (error) {
+      console.error('Ledger sync failed:', error);
+      setVpsStatus((prev) => ({ ...prev, isOnline: false }));
+    } finally {
+      syncReadyRef.current = true;
+      syncInFlightRef.current = false;
+    }
+  }, [currentUser, applyServerSnapshot, syncPayload]);
+
+  const pushTombstone = useCallback(async (collection: string, id: string) => {
+    const payload = {
+      bank_accounts: [],
+      credit_cards: [],
+      categories: [],
+      transactions: [],
+      budget_targets: [],
+    } as Record<string, any[]>;
+    payload[collection] = [{ id, updated_at: new Date().toISOString(), deleted: true }];
+    await ledgerApi.push(payload as any);
+  }, []);
+
+  useEffect(() => {
+    syncReadyRef.current = false;
+    if (currentUser) void syncWithBackend();
+  }, [currentUser?.id]);
+
+  useEffect(() => {
+    if (!currentUser || !syncReadyRef.current || syncInFlightRef.current) return;
+    const timer = window.setTimeout(() => {
+      ledgerApi.push(syncPayload()).catch((error) => {
+        console.error('Ledger push failed:', error);
+        setVpsStatus((prev) => ({ ...prev, isOnline: false }));
+      });
+    }, 500);
+    return () => window.clearTimeout(timer);
+  }, [currentUser?.id, bankAccounts, creditCards, categories, transactions, budgetTargets, syncPayload]);
 
   // VPS compatibility state (deprecated in favor of Google Cloud Backup)
   const [vpsStatus, setVpsStatus] = useState({
@@ -631,6 +718,7 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   const deleteTransaction = (id: string) => {
     setTransactions((prev) => prev.filter((t) => t.id !== id));
+    void pushTombstone('transactions', id).catch((error) => console.error('Transaction tombstone failed:', error));
   };
 
   // =========================================================================
@@ -676,6 +764,7 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   const deleteBankAccount = (id: string) => {
     setBankAccounts((prev) => prev.filter((a) => a.id !== id));
+    void pushTombstone('bank_accounts', id).catch((error) => console.error('Account tombstone failed:', error));
   };
 
   const addCreditCard = (card: Omit<CreditCard, 'id'>) => {
@@ -692,6 +781,7 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   const deleteCreditCard = (id: string) => {
     setCreditCards((prev) => prev.filter((c) => c.id !== id));
+    void pushTombstone('credit_cards', id).catch((error) => console.error('Card tombstone failed:', error));
   };
 
   // =========================================================================
@@ -711,6 +801,7 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   const deleteCategory = (id: string) => {
     setCategories((prev) => prev.filter((c) => c.id !== id));
+    void pushTombstone('categories', id).catch((error) => console.error('Category tombstone failed:', error));
   };
 
   const addSubcategory = (categoryId: string, sub: Omit<Subcategory, 'id' | 'categoryId'>) => {
@@ -905,6 +996,7 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   const resetUserData = () => {
     if (!currentUser) return;
+    void ledgerApi.reset().catch((error) => console.error('Backend ledger reset failed:', error));
     setBankAccounts([]);
     setCreditCards([]);
     setCategories(STARTER_CATEGORIES);
@@ -913,6 +1005,8 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
   };
 
   const logoutUser = () => {
+    const refreshToken = getRefreshToken();
+    if (refreshToken) void authApi.logout(refreshToken).catch(() => undefined);
     clearTokens();
     setCurrentUser(null);
   };
@@ -928,9 +1022,13 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
     setUsersList((prev) => prev.map((u) => (u.id === currentUser.id ? updated : u)));
   };
 
-  const deleteUserAccount = () => {
+  const deleteUserAccount = async () => {
     if (!currentUser) return;
     const userId = currentUser.id;
+    await authApi.deleteAccount().catch((error) => {
+      console.error('Backend account deletion failed:', error);
+    });
+    clearTokens();
     // Clear storage for this user
     localStorage.removeItem(`${STORAGE_DATA_PREFIX}${userId}`);
     setUsersList((prev) => prev.filter((u) => u.id !== userId));
@@ -947,12 +1045,7 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
   // VPS SYNC & EXPORT/IMPORT
   // =========================================================================
   const triggerManualSync = async () => {
-    // Simulate HTTPS request to user's Hostinger VPS
-    await new Promise((res) => setTimeout(res, 800));
-    setVpsStatus((prev) => ({
-      ...prev,
-      lastSynced: 'Just now'
-    }));
+    await syncWithBackend();
   };
 
   const exportDataJSON = (): string => {
